@@ -1,22 +1,30 @@
 import React from "react";
 import { Image } from "@chakra-ui/react";
 
-import { ImageProperty } from "../../../../Common/Interface/ImageProperty";
-
-import { BoxAspectRatio } from "../../../../Common/Interface/AspectRatio";
+import { BoxAspectRatio } from "../../../../../Common/Interface/AspectRatio";
+import { ImageProperty } from "../../../../../Common/Interface/ImageProperty";
 
 interface props {
-  images: ImageProperty[];
+  index: number;
+  onOpen: (index: number) => void;
+  image: ImageProperty;
 }
 
 const ImagePreview: React.FC<props> = (props) => {
-  const { images } = props;
+  const { index, onOpen, image } = props;
 
-  return images.map((image, index) => {
-    return (
-      <Image key={index} alt={image.alt} marginRight={2} src={image.image} objectFit="cover" boxSize={PIC_SIZE} borderRadius={PIC_BORDER_RADIUS} />
-    );
-  });
+  return (
+    <Image
+      onClick={() => onOpen(index)}
+      key={index}
+      alt={image.alt}
+      marginRight={2}
+      src={image.image}
+      objectFit="cover"
+      boxSize={PIC_SIZE}
+      borderRadius={PIC_BORDER_RADIUS}
+    />
+  );
 };
 
 export default ImagePreview;

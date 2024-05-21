@@ -1,7 +1,10 @@
-import { Collection } from "../../Common/Enum/Collection";
-import { Portfolio } from "../../Domain/Entities/Portfolio";
-import { PortfolioRepository } from "../../Domain/Repositories/PortfolioRepository";
 import { BaseRemote } from "./Base/BaseRemote";
+
+import { Collection } from "../../Common/Enum/Collection";
+
+import { Portfolio } from "../../Domain/Entities/Portfolio";
+
+import { PortfolioRepository } from "../../Domain/Repositories/PortfolioRepository";
 
 export default class PortfolioDataSource implements PortfolioRepository {
   async requestPortfolio(): Promise<Portfolio[]> {
