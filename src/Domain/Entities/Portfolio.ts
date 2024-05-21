@@ -1,4 +1,4 @@
-import { ImageProperty } from "./Image";
+import { ImageProperty } from "../../Common/Interface/ImageProperty";
 
 export interface Portfolio {
   title?: string;

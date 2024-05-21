@@ -1,7 +1,7 @@
 import React from "react";
 import { Image } from "@chakra-ui/react";
 
-import { ImageProperty } from "../../../../Domain/Entities/Image";
+import { ImageProperty } from "../../../../Common/Interface/ImageProperty";
 
 import { BoxAspectRatio } from "../../../../Common/Interface/AspectRatio";
 
