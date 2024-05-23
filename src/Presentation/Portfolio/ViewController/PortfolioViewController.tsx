@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 
+import { Images } from "../../../Common/Enum/Assets/Images";
 import { AspectRatio } from "../../../Common/Interface/AspectRatio";
 
 import LeftLiftData from "./CraneLiftData/LeftLiftData";
 import RightLiftData from "./CraneLiftData/RightLiftData";
 
 import { PortfolioViewModel } from "../ViewModel/PortfolioViewModel";
+import useWindowDimension from "../../../Common/Utils/useWindowDimension";
 
 const PortfolioViewController: React.FC = () => {
   const portfolioVM = PortfolioViewModel();
@@ -28,27 +30,26 @@ const PortfolioViewController: React.FC = () => {
   }, [portfolioList]);
 
   return (
-    <Box w="100%" height="110em" bg="skyblue" display="flex" justifyContent="center">
+    <Box w="100%" height="200em" bg="skyblue" display="flex" justifyContent="center">
       {/* Land */}
       <Box w="100%" bg="green" height={[16, null, 20, null, 24]} sx={{ position: "absolute", bottom: 0 }}></Box>
+
       {/* Crane Skeleton */}
-      {portfolioList.map((data, index) => {
+      {Array.from({ length: portfolioList.length * 4.5 }).map((_, index) => {
         return (
           <Box
-            bg={color[index]}
             key={index}
-            height={CRANE_SKELETON_HEIGHT}
-            w={CRANE_SKELETON_WIDTH}
             position="absolute"
             bottom={[
-              index === 0 ? 10 : (index + 1) * CRANE_SKELETON_ASPECT_RATIO.small.height - 210,
+              index === 0 ? 16 : (index + 1) * CRANE_SKELETON_ASPECT_RATIO.small.height + 10,
               null,
-              index === 0 ? 14 : (index + 1) * CRANE_SKELETON_ASPECT_RATIO.med.height - 294,
+              index === 0 ? 20 : (index + 1) * CRANE_SKELETON_ASPECT_RATIO.med.height + 5,
               null,
-              index === 0 ? 24 : (index + 1) * CRANE_SKELETON_ASPECT_RATIO.big.height - 354,
+              index === 0 ? 24 : (index + 1) * CRANE_SKELETON_ASPECT_RATIO.big.height - 5,
               null,
-            ]}
-          />
+            ]}>
+            <Image src={Images.ic_crane_skeleton} alt="" w={CRANE_SKELETON_WIDTH} h={CRANE_SKELETON_HEIGHT} />
+          </Box>
         );
       })}
 
@@ -56,7 +57,7 @@ const PortfolioViewController: React.FC = () => {
       {portfolioList.map((data, index) => {
         return (
           <Box
-            bg="white"
+            bg=""
             key={index}
             height={CRANE_LIFT_HEIGHT}
             w={CRANE_LIFT_WIDTH}
@@ -129,9 +130,9 @@ const PortfolioViewController: React.FC = () => {
 export default PortfolioViewController;
 
 const CRANE_SKELETON_ASPECT_RATIO: AspectRatio = {
-  small: { width: 100, height: 250 }, // height = width + 150
-  med: { width: 150, height: 350 }, // height = width + 200
-  big: { width: 200, height: 450 }, // height = width + 250
+  small: { width: 50, height: 50 }, // height = width + 150
+  med: { width: 75, height: 75 }, // height = width + 200
+  big: { width: 100, height: 100 }, // height = width + 250
 };
 
 const CRANE_LIFT_ASPECT_RATIO: AspectRatio = {

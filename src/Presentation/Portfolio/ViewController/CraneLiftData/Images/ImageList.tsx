@@ -63,7 +63,7 @@ const ImageList: React.FC<props> = (props) => {
       <>
         {getImageSlices(width, index, image, onOpen)}
 
-        <Modal key={index} onClose={onClose} isOpen={imageIndex === index} isCentered>
+        <Modal key={image.image} onClose={onClose} isOpen={imageIndex === index} isCentered>
           <ModalOverlay />
           <ModalContent maxW={MODAL_CONTENT_MAX_WIDTH} maxH={MODAL_CONTENT_MAX_HEIGHT}>
             <ModalHeader>Modal Title</ModalHeader>
