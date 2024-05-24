@@ -21,6 +21,10 @@ const LeftLiftData: React.FC<props> = (props) => {
         {data.title}
       </Text>
 
+      <Text as="b" fontSize={FONT_FIELD_SIZE}>
+        {data.field}
+      </Text>
+
       <Box display="flex" flexDirection="row" marginTop={2} alignSelf="flex-start" justifyContent="flex-start">
         {data.framework?.map((icon, index) => {
           return (
@@ -51,6 +55,8 @@ const IC_FRAMEWORK_ASPECT_RATIO: BoxAspectRatio = {
 };
 
 const FONT_TITLE_SIZE = [12, null, 22, null, 32];
+
+const FONT_FIELD_SIZE = [8, null, 12, null, 16];
 
 const IC_FRAMEWORK_SIZE = [IC_FRAMEWORK_ASPECT_RATIO.small.size, null, IC_FRAMEWORK_ASPECT_RATIO.med.size, null, IC_FRAMEWORK_ASPECT_RATIO.big.size];
 

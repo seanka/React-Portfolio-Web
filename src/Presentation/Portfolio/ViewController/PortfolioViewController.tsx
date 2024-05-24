@@ -8,7 +8,6 @@ import LeftLiftData from "./CraneLiftData/LeftLiftData";
 import RightLiftData from "./CraneLiftData/RightLiftData";
 
 import { PortfolioViewModel } from "../ViewModel/PortfolioViewModel";
-import useWindowDimension from "../../../Common/Utils/useWindowDimension";
 
 const PortfolioViewController: React.FC = () => {
   const portfolioVM = PortfolioViewModel();

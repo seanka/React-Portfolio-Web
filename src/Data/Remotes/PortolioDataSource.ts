@@ -10,7 +10,7 @@ export default class PortfolioDataSource implements PortfolioRepository {
   async requestPortfolio(): Promise<Portfolio[]> {
     const baseRemote = BaseRemote();
 
-    const data = await baseRemote.requestCollection({ col: Collection.portfolio });
+    const data = await baseRemote.requestCollection({ col: Collection.portfolio, order: "created", sort: "asc" });
 
     const response: Portfolio[] = [];
     data.forEach((doc) => response.push(doc.data()));
