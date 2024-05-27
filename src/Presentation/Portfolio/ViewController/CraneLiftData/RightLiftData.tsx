@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Text } from "@chakra-ui/react";
+import parse from "html-react-parser";
 
 import { Portfolio } from "../../../../Domain/Entities/Portfolio";
 
@@ -25,7 +26,7 @@ const RightLiftData: React.FC<props> = (props) => {
       </Box>
 
       <Box>
-        <Text noOfLines={4}>{data.description}</Text>
+        <Text noOfLines={4}>{parse(data.description!)}</Text>
       </Box>
     </Box>
   );

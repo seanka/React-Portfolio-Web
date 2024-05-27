@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import parse from "html-react-parser";
 import { Box, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text } from "@chakra-ui/react";
 
 import { AspectRatio } from "../../../../../Common/Interface/AspectRatio";
@@ -77,7 +78,7 @@ const ImageList: React.FC<props> = (props) => {
               </Box>
             </ModalBody>
             <ModalFooter alignSelf="center">
-              <Text>{description}</Text>
+              <Text>{parse(description)}</Text>
             </ModalFooter>
           </ModalContent>
         </Modal>
