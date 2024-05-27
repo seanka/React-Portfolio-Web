@@ -34,7 +34,7 @@ const PortfolioViewController: React.FC = () => {
       <Box w="100%" bg="green" height={[16, null, 20, null, 24]} sx={{ position: "absolute", bottom: 0 }}></Box>
 
       {/* Crane Skeleton */}
-      {Array.from({ length: portfolioList.length * 4.5 }).map((_, index) => {
+      {Array.from({ length: portfolioList.length * 5.4 }).map((_, index) => {
         return (
           <Box
             key={index}
@@ -47,32 +47,29 @@ const PortfolioViewController: React.FC = () => {
               index === 0 ? 24 : (index + 1) * CRANE_SKELETON_ASPECT_RATIO.big.height - 5,
               null,
             ]}>
-            <Image src={Images.ic_crane_skeleton} alt="" w={CRANE_SKELETON_WIDTH} h={CRANE_SKELETON_HEIGHT} />
+            <Image src={Images.ic_crane_skeleton} w={CRANE_SKELETON_WIDTH} h={CRANE_SKELETON_HEIGHT} />
           </Box>
         );
       })}
 
       {/* Crane Lift */}
-      {portfolioList.map((data, index) => {
+      {Array.from({ length: portfolioList.length }).map((_, index) => {
         return (
           <Box
-            bg=""
             key={index}
-            height={CRANE_LIFT_HEIGHT}
+            position="absolute"
+            h={CRANE_LIFT_HEIGHT}
             w={CRANE_LIFT_WIDTH}
-            sx={{
-              position: "absolute",
-              bottom: [
-                (index + 1) * CRANE_LIFT_ASPECT_RATIO.small.height + (index + 1) * 60,
-                null,
-                (index + 1) * CRANE_LIFT_ASPECT_RATIO.med.height + (index + 1) * 80,
-                null,
-                (index + 1) * CRANE_LIFT_ASPECT_RATIO.big.height + (index + 1) * 100,
-              ],
-            }}
-          />
+            bottom={[
+              (index + 1) * CRANE_LIFT_ASPECT_RATIO.small.height + index * 60,
+              null,
+              (index + 1) * CRANE_LIFT_ASPECT_RATIO.med.height + index * 80,
+              null,
+              (index + 1) * CRANE_LIFT_ASPECT_RATIO.big.height + index * 100,
+            ]}>
+            <Image src={Images.ic_crane_lift} w={CRANE_LIFT_IC_WIDTH} h={CRANE_LIFT_IC_HEIGHT} />
+          </Box>
         );
-        return <Box />;
       })}
 
       {/* Crane Left Lift Data */}
@@ -128,25 +125,14 @@ const PortfolioViewController: React.FC = () => {
 
 export default PortfolioViewController;
 
+// * ================================================================
+// * CRANE SKELETON
+// * ================================================================
 const CRANE_SKELETON_ASPECT_RATIO: AspectRatio = {
   small: { width: 50, height: 50 }, // height = width + 150
   med: { width: 75, height: 75 }, // height = width + 200
   big: { width: 100, height: 100 }, // height = width + 250
 };
-
-const CRANE_LIFT_ASPECT_RATIO: AspectRatio = {
-  small: { width: 120, height: 160 },
-  med: { width: 180, height: 240 },
-  big: { width: 240, height: 290 },
-};
-
-const CRANE_DATA_ASPECT_RATIO: AspectRatio = {
-  small: { width: 300, height: 70 },
-  med: { width: 700, height: 100 },
-  big: { width: 1100, height: 120 },
-};
-
-const color = ["yellow", "red", "grey"];
 
 const CRANE_SKELETON_HEIGHT = [
   CRANE_SKELETON_ASPECT_RATIO.small.height,
@@ -164,9 +150,46 @@ const CRANE_SKELETON_WIDTH = [
   CRANE_SKELETON_ASPECT_RATIO.big.width,
 ];
 
+// * ================================================================
+// * CRANE LIFT
+// * ================================================================
+const CRANE_LIFT_ASPECT_RATIO: AspectRatio = {
+  small: { width: 120, height: 160 },
+  med: { width: 180, height: 240 },
+  big: { width: 240, height: 290 },
+};
+
+const CRANE_LIFT_IC_ASPECT_RATIO: AspectRatio = {
+  small: { width: 50, height: 60 },
+  med: { width: 70, height: 80 },
+  big: { width: 110, height: 120 },
+};
+
 const CRANE_LIFT_HEIGHT = [CRANE_LIFT_ASPECT_RATIO.small.height, null, CRANE_LIFT_ASPECT_RATIO.med.height, null, CRANE_LIFT_ASPECT_RATIO.big.height];
 
 const CRANE_LIFT_WIDTH = [CRANE_LIFT_ASPECT_RATIO.small.width, null, CRANE_LIFT_ASPECT_RATIO.med.width, null, CRANE_LIFT_ASPECT_RATIO.big.width];
+
+const CRANE_LIFT_IC_HEIGHT = [
+  CRANE_LIFT_IC_ASPECT_RATIO.small.height,
+  null,
+  CRANE_LIFT_IC_ASPECT_RATIO.med.height,
+  null,
+  CRANE_LIFT_IC_ASPECT_RATIO.big.height,
+];
+
+const CRANE_LIFT_IC_WIDTH = [
+  CRANE_LIFT_IC_ASPECT_RATIO.small.width,
+  null,
+  CRANE_LIFT_IC_ASPECT_RATIO.med.width,
+  null,
+  CRANE_LIFT_IC_ASPECT_RATIO.big.width,
+];
+
+const CRANE_DATA_ASPECT_RATIO: AspectRatio = {
+  small: { width: 300, height: 70 },
+  med: { width: 700, height: 100 },
+  big: { width: 1100, height: 120 },
+};
 
 const CRANE_DATA_WIDTH = [CRANE_DATA_ASPECT_RATIO.small.width, null, CRANE_DATA_ASPECT_RATIO.med.width, null, CRANE_DATA_ASPECT_RATIO.big.width];
 
