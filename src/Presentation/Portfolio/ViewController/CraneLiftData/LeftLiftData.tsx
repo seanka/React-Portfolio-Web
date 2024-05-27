@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, Image, Text, Tooltip } from "@chakra-ui/react";
 
 import { BoxAspectRatio } from "../../../../Common/Interface/AspectRatio";
 import useWindowDimension from "../../../../Common/Utils/useWindowDimension";
@@ -28,17 +28,19 @@ const LeftLiftData: React.FC<props> = (props) => {
       <Box display="flex" flexDirection="row" marginTop={2} alignSelf="flex-start" justifyContent="flex-start">
         {data.framework?.map((icon, index) => {
           return (
-            <Image
-              p={1}
-              key={index}
-              alt={icon.alt}
-              marginRight={2}
-              src={icon.image}
-              bgColor="white"
-              objectFit="cover"
-              boxSize={IC_FRAMEWORK_SIZE}
-              borderRadius={IC_FRAMEWORK_BORDER_RAD}
-            />
+            <Tooltip placement="top" label={icon.hover}>
+              <Image
+                p={1}
+                key={index}
+                alt={icon.alt}
+                marginRight={2}
+                src={icon.image}
+                bgColor="white"
+                objectFit="cover"
+                boxSize={IC_FRAMEWORK_SIZE}
+                borderRadius={IC_FRAMEWORK_BORDER_RAD}
+              />
+            </Tooltip>
           );
         })}
       </Box>

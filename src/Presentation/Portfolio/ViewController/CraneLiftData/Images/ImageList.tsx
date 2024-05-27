@@ -11,12 +11,13 @@ import useWindowDimension from "../../../../../Common/Utils/useWindowDimension";
 import ImageControl from "../../../../Common/Modals/ImageControl";
 
 interface props {
+  title: string;
   description: string;
   images: ImageProperty[];
 }
 
 const ImageList: React.FC<props> = (props) => {
-  const { description, images } = props;
+  const { title, description, images } = props;
   const { width, height } = useWindowDimension();
 
   const [imageIndex, setImageIndex] = useState(-1);
@@ -66,13 +67,13 @@ const ImageList: React.FC<props> = (props) => {
         <Modal key={image.image} onClose={onClose} isOpen={imageIndex === index} isCentered>
           <ModalOverlay />
           <ModalContent maxW={MODAL_CONTENT_MAX_WIDTH} maxH={MODAL_CONTENT_MAX_HEIGHT}>
-            <ModalHeader>Modal Title</ModalHeader>
+            <ModalHeader>{title}</ModalHeader>
             <ModalCloseButton />
-            <ModalBody alignSelf="center" justifyItems="center">
-              <Box display="flex">
-                <ImageControl mr={2} handleOnClick={() => handleOnTapPrev(index)} label="-" />
+            <ModalBody>
+              <Box display="flex" justifyContent="space-between">
+                <ImageControl mr={2} handleOnClick={() => handleOnTapPrev(index)} label="<" />
                 <ImageCarousel index={index} windowWidth={width} image={image} />
-                <ImageControl ml={2} handleOnClick={() => handleOnTapNext(index)} label="+" />
+                <ImageControl ml={2} handleOnClick={() => handleOnTapNext(index)} label=">" />
               </Box>
             </ModalBody>
             <ModalFooter alignSelf="center">
