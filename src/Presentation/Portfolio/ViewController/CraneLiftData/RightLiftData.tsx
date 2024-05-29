@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, Text } from "@chakra-ui/react";
 import parse from "html-react-parser";
+import { Box, Text } from "@chakra-ui/react";
 
 import { Portfolio } from "../../../../Domain/Entities/Portfolio";
 
@@ -26,10 +26,14 @@ const RightLiftData: React.FC<props> = (props) => {
       </Box>
 
       <Box>
-        <Text noOfLines={4}>{parse(data.description!)}</Text>
+        <Text noOfLines={4} fontSize={FONT_DESCRIPTION_SIZE}>
+          {parse(data.description!)}
+        </Text>
       </Box>
     </Box>
   );
 };
 
 export default RightLiftData;
+
+const FONT_DESCRIPTION_SIZE = [8, null, 12, null, 16];

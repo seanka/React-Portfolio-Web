@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import parse from "html-react-parser";
 import { Box, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text } from "@chakra-ui/react";
 
-import { AspectRatio } from "../../../../../Common/Interface/AspectRatio";
 import { ImageProperty } from "../../../../../Common/Interface/ImageProperty";
 
 import ImagePreview from "./ImagePreview";
@@ -19,7 +18,7 @@ interface props {
 
 const ImageList: React.FC<props> = (props) => {
   const { title, description, images } = props;
-  const { width, height } = useWindowDimension();
+  const { width } = useWindowDimension();
 
   const [imageIndex, setImageIndex] = useState(-1);
 
@@ -38,28 +37,6 @@ const ImageList: React.FC<props> = (props) => {
     setImageIndex(index - 1);
   };
 
-  const MODAL_CONTENT_ASPECT_RATIO: AspectRatio = {
-    small: { width: 100, height: 50 },
-    med: { width: 200, height: 100 },
-    big: { width: 400, height: 200 },
-  };
-
-  const MODAL_CONTENT_MAX_WIDTH = [
-    width - MODAL_CONTENT_ASPECT_RATIO.small.width,
-    null,
-    width - MODAL_CONTENT_ASPECT_RATIO.med.width,
-    null,
-    width - MODAL_CONTENT_ASPECT_RATIO.big.width,
-  ];
-
-  const MODAL_CONTENT_MAX_HEIGHT = [
-    height - MODAL_CONTENT_ASPECT_RATIO.small.height,
-    null,
-    height - MODAL_CONTENT_ASPECT_RATIO.med.height,
-    null,
-    height - MODAL_CONTENT_ASPECT_RATIO.big.height,
-  ];
-
   return images.map((image, index) => {
     return (
       <>
@@ -67,7 +44,7 @@ const ImageList: React.FC<props> = (props) => {
 
         <Modal key={image.image} onClose={onClose} isOpen={imageIndex === index} isCentered>
           <ModalOverlay />
-          <ModalContent maxW={MODAL_CONTENT_MAX_WIDTH} maxH={MODAL_CONTENT_MAX_HEIGHT}>
+          <ModalContent maxW={width / 1.5}>
             <ModalHeader>{title}</ModalHeader>
             <ModalCloseButton />
             <ModalBody>

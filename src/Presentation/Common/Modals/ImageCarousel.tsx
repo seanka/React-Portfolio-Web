@@ -14,7 +14,7 @@ const ImageCarousel: React.FC<props> = (props) => {
 
   return (
     <Box key={index}>
-      <Image maxW={windowWidth} src={image.image} objectFit="contain" aspectRatio={16 / 9} />
+      <Image maxW={windowWidth / 2} src={image.image} objectFit="contain" />
     </Box>
   );
 };

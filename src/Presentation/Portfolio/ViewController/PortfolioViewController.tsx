@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Box, Image } from "@chakra-ui/react";
 
 import { Images } from "../../../Common/Enum/Assets/Images";
+import { Colors } from "../../../Common/Enum/Assets/Colors";
 import { AspectRatio } from "../../../Common/Interface/AspectRatio";
 
 import LeftLiftData from "./CraneLiftData/LeftLiftData";
@@ -29,7 +30,7 @@ const PortfolioViewController: React.FC = () => {
   }, [portfolioList]);
 
   return (
-    <Box w="100%" height="200em" bg="skyblue" display="flex" justifyContent="center">
+    <Box w="100%" height="200em" bg={Colors.blue} display="flex" justifyContent="center">
       {/* Land */}
       <Box w="100%" bg="green" height={[16, null, 20, null, 24]} sx={{ position: "absolute", bottom: 0 }}></Box>
 
@@ -160,8 +161,8 @@ const CRANE_LIFT_ASPECT_RATIO: AspectRatio = {
 };
 
 const CRANE_LIFT_IC_ASPECT_RATIO: AspectRatio = {
-  small: { width: 50, height: 60 },
-  med: { width: 70, height: 80 },
+  small: { width: 55, height: 65 },
+  med: { width: 90, height: 100 },
   big: { width: 110, height: 120 },
 };
 
@@ -184,40 +185,3 @@ const CRANE_LIFT_IC_WIDTH = [
   null,
   CRANE_LIFT_IC_ASPECT_RATIO.big.width,
 ];
-
-const CRANE_DATA_ASPECT_RATIO: AspectRatio = {
-  small: { width: 300, height: 70 },
-  med: { width: 700, height: 100 },
-  big: { width: 1100, height: 120 },
-};
-
-const CRANE_DATA_WIDTH = [CRANE_DATA_ASPECT_RATIO.small.width, null, CRANE_DATA_ASPECT_RATIO.med.width, null, CRANE_DATA_ASPECT_RATIO.big.width];
-
-// const craneLiftArchived = () => {
-//   return portfolioList.map((data, index) => {
-//     return (
-//       <Box
-//         p={2}
-//         key={index}
-//         bgColor="green"
-//         w={CRANE_DATA_WIDTH}
-//         height={CRANE_LIFT_HEIGHT}
-//         display="flex"
-//         flexDirection="row"
-//         justifyContent="center"
-//         sx={{
-//           position: "absolute",
-//           bottom: [
-//             (index + 1) * CRANE_LIFT_ASPECT_RATIO.small.height + (index + 1) * 60,
-//             null,
-//             (index + 1) * CRANE_LIFT_ASPECT_RATIO.med.height + (index + 1) * 80,
-//             null,
-//             (index + 1) * CRANE_LIFT_ASPECT_RATIO.big.height + (index + 1) * 100,
-//           ],
-//         }}>
-//         <LeftLiftData data={data} />
-//         {/* <RightLiftData data={data} /> */}
-//       </Box>
-//     );
-//   });
-// };
