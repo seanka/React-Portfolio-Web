@@ -21,8 +21,6 @@ const RightLiftData: React.FC<props> = (props) => {
     <Box width={width / 3 - 10} justifyContent="center" alignItems="flex-start" display="flex" flexDirection="column">
       <Box flexDirection="row" display="flex">
         <ImageList title={data.title!} images={data.images!} description={data.description!} />
-
-        <Text>{data.images?.length}</Text>
       </Box>
 
       <Box>

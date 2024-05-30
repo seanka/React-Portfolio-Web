@@ -40,11 +40,11 @@ const ImageList: React.FC<props> = (props) => {
   return images.map((image, index) => {
     return (
       <>
-        {getImageSlices(width, index, image, onOpen)}
+        {getImageSlices(width, index, image, onOpen, images.length)}
 
         <Modal key={image.image} onClose={onClose} isOpen={imageIndex === index} isCentered>
           <ModalOverlay />
-          <ModalContent maxW={width / 1.5}>
+          <ModalContent maxW={width - width / 3.5}>
             <ModalHeader>{title}</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
@@ -66,18 +66,21 @@ const ImageList: React.FC<props> = (props) => {
 
 export default ImageList;
 
-function getImageSlices(width: number, index: number, image: ImageProperty, onOpen: (index: number) => void) {
+function getImageSlices(width: number, index: number, image: ImageProperty, onOpen: (index: number) => void, imagesCount: number) {
   if (width < 768) {
     if (index >= 2) return;
+    const blur = index >= 1 && imagesCount > 2;
 
-    return <ImagePreview index={index} image={image} onOpen={onOpen} />;
+    return <ImagePreview index={index} image={image} onOpen={onOpen} isBlur={blur} imagesCount={imagesCount - 1} />;
   } else if (width < 1280) {
     if (index >= 3) return;
+    const blur = index >= 2 && imagesCount > 3;
 
-    return <ImagePreview index={index} image={image} onOpen={onOpen} />;
+    return <ImagePreview index={index} image={image} onOpen={onOpen} isBlur={blur} imagesCount={imagesCount - 2} />;
   } else {
     if (index >= 4) return;
+    const blur = index >= 3 && imagesCount > 4;
 
-    return <ImagePreview index={index} image={image} onOpen={onOpen} />;
+    return <ImagePreview index={index} image={image} onOpen={onOpen} isBlur={blur} imagesCount={imagesCount - 4} />;
   }
 }
