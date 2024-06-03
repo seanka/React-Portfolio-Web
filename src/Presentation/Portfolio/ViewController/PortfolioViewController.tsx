@@ -5,6 +5,7 @@ import { Images } from "../../../Common/Enum/Assets/Images";
 import { Colors } from "../../../Common/Enum/Assets/Colors";
 import { AspectRatio } from "../../../Common/Interface/AspectRatio";
 
+import Loader from "../../Common/Loader/Loader";
 import LeftLiftData from "./CraneLiftData/LeftLiftData";
 import RightLiftData from "./CraneLiftData/RightLiftData";
 
@@ -14,11 +15,13 @@ import useWindowDimension from "../../../Common/Utils/useWindowDimension";
 
 const PortfolioViewController: React.FC = () => {
   const portfolioVM = PortfolioViewModel();
+  const { width } = useWindowDimension();
 
   useEffect(() => {
     portfolioVM.requestPortfolioList();
   }, []);
 
+  const isLoading = portfolioVM.getIsLoading();
   const portfolioList = portfolioVM.getPortfolioList() ?? [];
 
   useEffect(() => {
@@ -31,7 +34,7 @@ const PortfolioViewController: React.FC = () => {
     }
   }, [portfolioList]);
 
-  const { width } = useWindowDimension();
+  if (isLoading) return <Loader />;
 
   return (
     <Box w="100%" height={`${getWebHeight(width, portfolioList.length)}em`} bg={Colors.blue} display="flex" justifyContent="center">
@@ -126,7 +129,7 @@ const PortfolioViewController: React.FC = () => {
       })}
 
       {/* Crane Head */}
-      <Box position="absolute" bottom={[portfolioList.length * 270, null, portfolioList.length * 400, null, portfolioList.length * 500]}>
+      <Box position="absolute" bottom={[portfolioList.length * 270, null, portfolioList.length * 398, null, portfolioList.length * 504]}>
         <Image src={Images.ic_crane_head} w={CRANE_HEAD_WIDTH} h={CRANE_HEAD_HEIGHT} />
       </Box>
     </Box>

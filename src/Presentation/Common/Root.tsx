@@ -6,7 +6,7 @@ function Root() {
   return (
     <>
       <Navigate to={RouteNavigation.portfolio} />
-      <Outlet />;
+      <Outlet />
     </>
   );
 }
