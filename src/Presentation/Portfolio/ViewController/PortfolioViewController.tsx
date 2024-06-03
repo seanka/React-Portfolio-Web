@@ -10,6 +10,8 @@ import RightLiftData from "./CraneLiftData/RightLiftData";
 
 import { PortfolioViewModel } from "../ViewModel/PortfolioViewModel";
 
+import useWindowDimension from "../../../Common/Utils/useWindowDimension";
+
 const PortfolioViewController: React.FC = () => {
   const portfolioVM = PortfolioViewModel();
 
@@ -29,8 +31,10 @@ const PortfolioViewController: React.FC = () => {
     }
   }, [portfolioList]);
 
+  const { width } = useWindowDimension();
+
   return (
-    <Box w="100%" height="200em" bg={Colors.blue} display="flex" justifyContent="center">
+    <Box w="100%" height={`${getWebHeight(width, portfolioList.length)}em`} bg={Colors.blue} display="flex" justifyContent="center">
       {/* Land */}
       <Box w="100%" bg="green" height={[16, null, 20, null, 24]} sx={{ position: "absolute", bottom: 0 }}></Box>
 
@@ -120,11 +124,26 @@ const PortfolioViewController: React.FC = () => {
           </Box>
         );
       })}
+
+      {/* Crane Head */}
+      <Box position="absolute" bottom={[portfolioList.length * 270, null, portfolioList.length * 400, null, portfolioList.length * 500]}>
+        <Image src={Images.ic_crane_head} w={CRANE_HEAD_WIDTH} h={CRANE_HEAD_HEIGHT} />
+      </Box>
     </Box>
   );
 };
 
 export default PortfolioViewController;
+
+function getWebHeight(width: number, multiplier: number) {
+  if (width < 768) {
+    return multiplier * 20;
+  } else if (width < 1280) {
+    return multiplier * 30;
+  } else {
+    return multiplier * 40;
+  }
+}
 
 // * ================================================================
 // * CRANE SKELETON
@@ -185,3 +204,16 @@ const CRANE_LIFT_IC_WIDTH = [
   null,
   CRANE_LIFT_IC_ASPECT_RATIO.big.width,
 ];
+
+// * ================================================================
+// * CRANE HEAD
+// * ================================================================
+const CRANE_HEAD_ASPECT_RATIO: AspectRatio = {
+  small: { width: 300, height: 100 },
+  med: { width: 600, height: 200 },
+  big: { width: 1400, height: 500 },
+};
+
+const CRANE_HEAD_HEIGHT = [CRANE_HEAD_ASPECT_RATIO.small.height, null, CRANE_HEAD_ASPECT_RATIO.med.height, null, CRANE_HEAD_ASPECT_RATIO.big.height];
+
+const CRANE_HEAD_WIDTH = [CRANE_HEAD_ASPECT_RATIO.small.width, null, CRANE_HEAD_ASPECT_RATIO.med.width, null, CRANE_HEAD_ASPECT_RATIO.big.width];
