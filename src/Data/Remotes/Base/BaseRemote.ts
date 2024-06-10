@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { Firestore, collection, getDocs, getFirestore, orderBy, query } from "firebase/firestore";
 
-import { FirebaseConfig } from "./FirebaseConfig";
+import { AppCheckKey, FirebaseConfig } from "./FirebaseConfig";
+import { ReCaptchaV3Provider, initializeAppCheck } from "firebase/app-check";
 
 interface props {
   col: string;
@@ -34,6 +35,12 @@ export function BaseRemote() {
 
 function firestore(): Firestore {
   const app = initializeApp(FirebaseConfig);
+
+  const appWithCheck = initializeAppCheck(app, {
+    provider: new ReCaptchaV3Provider(AppCheckKey),
+    isTokenAutoRefreshEnabled: true,
+  });
+
   const fs = getFirestore(app);
 
   return fs;

@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 
+/src/Data/Remotes/Base/FirebaseConfig.ts
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
