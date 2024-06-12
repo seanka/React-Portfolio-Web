@@ -36,7 +36,7 @@ export function BaseRemote() {
 function firestore(): Firestore {
   const app = initializeApp(FirebaseConfig);
 
-  const appWithCheck = initializeAppCheck(app, {
+  initializeAppCheck(app, {
     provider: new ReCaptchaV3Provider(AppCheckKey),
     isTokenAutoRefreshEnabled: true,
   });
