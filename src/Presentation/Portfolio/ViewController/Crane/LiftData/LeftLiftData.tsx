@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Image, Text, Tooltip } from "@chakra-ui/react";
 
-import { BoxAspectRatio } from "../../../../Common/Interface/AspectRatio";
-import useWindowDimension from "../../../../Common/Utils/useWindowDimension";
+import { BoxAspectRatio } from "../../../../../Common/Interface/AspectRatio";
+import useWindowDimension from "../../../../../Common/Utils/useWindowDimension";
 
-import { Portfolio } from "../../../../Domain/Entities/Portfolio";
+import { Portfolio } from "../../../../../Domain/Entities/Portfolio";
 
 interface props {
   data: Portfolio;

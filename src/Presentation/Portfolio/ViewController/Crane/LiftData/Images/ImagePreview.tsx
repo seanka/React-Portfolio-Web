@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Image, Text } from "@chakra-ui/react";
 
-import { BoxAspectRatio } from "../../../../../Common/Interface/AspectRatio";
-import { ImageProperty } from "../../../../../Common/Interface/ImageProperty";
+import { BoxAspectRatio } from "../../../../../../Common/Interface/AspectRatio";
+import { ImageProperty } from "../../../../../../Common/Interface/ImageProperty";
 
 interface props {
   index: number;

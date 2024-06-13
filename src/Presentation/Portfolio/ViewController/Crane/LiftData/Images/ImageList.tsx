@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import parse from "html-react-parser";
 import { Box, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text } from "@chakra-ui/react";
 
-import { ImageProperty } from "../../../../../Common/Interface/ImageProperty";
+import { ImageProperty } from "../../../../../../Common/Interface/ImageProperty";
 
 import ImagePreview from "./ImagePreview";
-import ImageCarousel from "../../../../Common/Modals/ImageCarousel";
+import ImageCarousel from "../../../../../Common/Modals/ImageCarousel";
 
-import useWindowDimension from "../../../../../Common/Utils/useWindowDimension";
-import ImageControl from "../../../../Common/Modals/ImageControl";
+import useWindowDimension from "../../../../../../Common/Utils/useWindowDimension";
+import ImageControl from "../../../../../Common/Modals/ImageControl";
 
 interface props {
   title: string;

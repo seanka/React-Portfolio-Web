@@ -2,9 +2,9 @@ import React from "react";
 import parse from "html-react-parser";
 import { Box, Text } from "@chakra-ui/react";
 
-import { Portfolio } from "../../../../Domain/Entities/Portfolio";
+import { Portfolio } from "../../../../../Domain/Entities/Portfolio";
 
-import useWindowDimension from "../../../../Common/Utils/useWindowDimension";
+import useWindowDimension from "../../../../../Common/Utils/useWindowDimension";
 
 import ImageList from "./Images/ImageList";
 
