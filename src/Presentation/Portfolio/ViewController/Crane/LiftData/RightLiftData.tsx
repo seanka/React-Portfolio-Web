@@ -6,21 +6,24 @@ import { Portfolio } from "../../../../../Domain/Entities/Portfolio";
 
 import useWindowDimension from "../../../../../Common/Utils/useWindowDimension";
 
-import ImageList from "./Images/ImageList";
+import LiftImagesContainer from "./LiftImagesContainer";
+
+import { PortfolioViewModel } from "../../../ViewModel/PortfolioViewModel";
 
 interface props {
   data: Portfolio;
+  portfolioVM: ReturnType<typeof PortfolioViewModel>;
 }
 
 const RightLiftData: React.FC<props> = (props) => {
-  const { data } = props;
+  const { data, portfolioVM } = props;
 
   const { width } = useWindowDimension();
 
   return (
     <Box width={width / 3 - 10} justifyContent="center" alignItems="flex-start" display="flex" flexDirection="column">
       <Box flexDirection="row" display="flex">
-        <ImageList title={data.title!} images={data.images!} description={data.description!} />
+        <LiftImagesContainer data={data} portfolioVM={portfolioVM} />
       </Box>
 
       <Box marginLeft={BOX_DESCRIPTION_LEFT_MARGIN} marginTop={1}>

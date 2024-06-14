@@ -7,7 +7,7 @@ interface props {
   handleIndexChange: (index: number) => void;
 }
 
-const ImageCounter: React.FC<props> = (props) => {
+const ImageModalCounter: React.FC<props> = (props) => {
   const { index, imageCount, handleIndexChange } = props;
 
   const handleOnTapNext = () => {
@@ -35,4 +35,4 @@ const ImageCounter: React.FC<props> = (props) => {
   );
 };
 
-export default ImageCounter;
+export default ImageModalCounter;

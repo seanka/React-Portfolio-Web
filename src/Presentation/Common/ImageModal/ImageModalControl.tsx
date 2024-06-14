@@ -8,7 +8,7 @@ interface props {
   handleOnClick: () => void;
 }
 
-const ImageControl: React.FC<props> = (props) => {
+const ImageModalControl: React.FC<props> = (props) => {
   const { ml = 0, mr = 0, label, handleOnClick } = props;
 
   return (
@@ -20,4 +20,4 @@ const ImageControl: React.FC<props> = (props) => {
   );
 };
 
-export default ImageControl;
+export default ImageModalControl;

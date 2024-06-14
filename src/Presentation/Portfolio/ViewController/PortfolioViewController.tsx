@@ -64,7 +64,7 @@ const PortfolioViewController: React.FC = () => {
 
       <CraneLeftLift portfolio={portfolioList} />
 
-      <CraneRightLift portfolio={portfolioList} />
+      <CraneRightLift portfolio={portfolioList} portfolioVM={portfolioVM} />
 
       <CraneHead portfolioLength={portfolioList.length} />
     </Box>

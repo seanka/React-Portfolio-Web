@@ -7,11 +7,13 @@ import { AspectRatio } from "../../../../Common/Interface/AspectRatio";
 
 import RightLiftData from "./LiftData/RightLiftData";
 
+import { PortfolioViewModel } from "../../ViewModel/PortfolioViewModel";
 interface props {
   portfolio: Portfolio[];
+  portfolioVM: ReturnType<typeof PortfolioViewModel>;
 }
 const CraneRightLift: React.FC<props> = (props) => {
-  const { portfolio } = props;
+  const { portfolio, portfolioVM } = props;
 
   return portfolio.map((data, index) => {
     return (
@@ -31,7 +33,7 @@ const CraneRightLift: React.FC<props> = (props) => {
           null,
           (index + 1) * CRANE_LIFT_ASPECT_RATIO.big.height + (index + 1) * 100,
         ]}>
-        <RightLiftData data={data} />
+        <RightLiftData data={data} portfolioVM={portfolioVM} />
       </Box>
     );
   });
