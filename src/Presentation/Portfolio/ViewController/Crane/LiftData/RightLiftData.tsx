@@ -23,10 +23,8 @@ const RightLiftData: React.FC<props> = (props) => {
         <ImageList title={data.title!} images={data.images!} description={data.description!} />
       </Box>
 
-      <Box>
-        <Text noOfLines={4} fontSize={FONT_DESCRIPTION_SIZE}>
-          {parse(data.description!)}
-        </Text>
+      <Box marginLeft={BOX_DESCRIPTION_LEFT_MARGIN} marginTop={1}>
+        <Text fontSize={FONT_DESCRIPTION_SIZE}>{parse(data.briefDesc!)}</Text>
       </Box>
     </Box>
   );
@@ -35,3 +33,5 @@ const RightLiftData: React.FC<props> = (props) => {
 export default RightLiftData;
 
 const FONT_DESCRIPTION_SIZE = [8, null, 12, null, 16];
+
+const BOX_DESCRIPTION_LEFT_MARGIN = [2, null, 3, null, 4];

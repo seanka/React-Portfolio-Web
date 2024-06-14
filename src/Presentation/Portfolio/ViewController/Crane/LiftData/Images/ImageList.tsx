@@ -55,7 +55,9 @@ const ImageList: React.FC<props> = (props) => {
               </Box>
             </ModalBody>
             <ModalFooter alignSelf="center">
-              <Text>{parse(description)}</Text>
+              <Text ml={10} mr={10}>
+                {parse(description)}
+              </Text>
             </ModalFooter>
           </ModalContent>
         </Modal>
