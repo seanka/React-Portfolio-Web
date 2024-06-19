@@ -4,7 +4,7 @@ import { Box, Text } from "@chakra-ui/react";
 
 import { Portfolio } from "../../../../../Domain/Entities/Portfolio";
 
-import useWindowDimension from "../../../../../Common/Utils/useWindowDimension";
+import { useWindowDimension } from "../../../../../Common/Utils/useWindowDimension";
 
 import LiftImagesContainer from "./LiftImagesContainer";
 

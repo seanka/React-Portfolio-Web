@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Image } from "@chakra-ui/react";
 
-import useWindowDimension from "../../../Common/Utils/useWindowDimension";
-import { generateRandomPosition } from "../../../Common/Utils/generateRandomPosition"; //
+import { useWindowDimension } from "../../../Common/Utils/useWindowDimension";
+import { generateRandomPosition } from "../../../Common/Utils/generateRandomPosition";
 
 interface props {
   src: string;

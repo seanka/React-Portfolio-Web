@@ -5,7 +5,8 @@ import { Colors } from "../../../Common/Enum/Assets/Colors";
 
 import { PortfolioViewModel } from "../ViewModel/PortfolioViewModel";
 
-import useWindowDimension from "../../../Common/Utils/useWindowDimension";
+import { BrowserWidth } from "../../../Common/Enum/BrowserWidth";
+import { useWindowDimension } from "../../../Common/Utils/useWindowDimension";
 import { useElementDimension } from "../../../Common/Utils/useElementDimension";
 
 import CraneLift from "./Crane/CraneLift";
@@ -19,38 +20,35 @@ import CraneRightLift from "./Crane/CraneRightLift";
 
 const PortfolioViewController: React.FC = () => {
   const portfolioVM = PortfolioViewModel();
+  const { requestPortfolioList, getIsLoading, getPortfolioList, getIsShowDecoration } = portfolioVM;
 
   const { width, height } = useWindowDimension();
   const [refContainer, dimension] = useElementDimension();
 
   useEffect(() => {
-    portfolioVM.requestPortfolioList();
+    requestPortfolioList();
   }, []);
 
-  const isLoading = portfolioVM.getIsLoading();
-  const portfolioList = portfolioVM.getPortfolioList() ?? [];
-  const isShowDecoration = portfolioVM.getIsShowDecoration();
+  const isLoading = getIsLoading();
+  const isShowDecoration = getIsShowDecoration();
+
+  const portfolioList = getPortfolioList() ?? [];
+  const portfolioLength = portfolioList.length;
 
   useEffect(() => {
-    if (portfolioList.length > 0) {
-      window.scroll({
-        top: document.body.offsetHeight,
-        left: 0,
-        behavior: "smooth",
-      });
-    }
+    if (portfolioLength <= 0) return;
+
+    window.scroll({
+      top: document.body.offsetHeight,
+      left: 0,
+      behavior: "smooth",
+    });
   }, [portfolioList]);
 
   if (isLoading) return <Loader />;
 
   return (
-    <Box
-      w="100%"
-      display="flex"
-      ref={refContainer}
-      bg={Colors.blue}
-      height={`${getWebHeight(width, portfolioList.length)}em`}
-      justifyContent="center">
+    <Box w="100%" display="flex" ref={refContainer} bg={Colors.blue} height={`${getWebHeight(width, portfolioLength)}em`} justifyContent="center">
       {/* Land */}
       <Box w="100%" bg="green" height={[16, null, 20, null, 24]} sx={{ position: "absolute", bottom: 0 }} />
 
@@ -58,15 +56,15 @@ const PortfolioViewController: React.FC = () => {
 
       {isShowDecoration ? <BirdImages count={6} height={height} parentDimension={dimension} /> : null}
 
-      <CraneSkeleton portfolioLength={portfolioList.length} />
+      <CraneSkeleton portfolioLength={portfolioLength} />
 
-      <CraneLift portfolioLength={portfolioList.length} />
+      <CraneLift portfolioLength={portfolioLength} />
 
       <CraneLeftLift portfolio={portfolioList} />
 
       <CraneRightLift portfolio={portfolioList} portfolioVM={portfolioVM} />
 
-      <CraneHead portfolioLength={portfolioList.length} />
+      <CraneHead portfolioLength={portfolioLength} />
     </Box>
   );
 };
@@ -74,9 +72,9 @@ const PortfolioViewController: React.FC = () => {
 export default PortfolioViewController;
 
 function getWebHeight(width: number, multiplier: number) {
-  if (width < 768) {
+  if (width < BrowserWidth.MOBILE) {
     return multiplier * 20;
-  } else if (width < 1280) {
+  } else if (width < BrowserWidth.TABLET) {
     return multiplier * 30;
   } else {
     return multiplier * 40;

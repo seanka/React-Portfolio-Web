@@ -3,8 +3,9 @@ import { Box, Image, Text } from "@chakra-ui/react";
 
 import { Portfolio } from "../../../../../Domain/Entities/Portfolio";
 
+import { BrowserWidth } from "../../../../../Common/Enum/BrowserWidth";
 import { BoxAspectRatio } from "../../../../../Common/Interface/AspectRatio";
-import useWindowDimension from "../../../../../Common/Utils/useWindowDimension";
+import { useWindowDimension } from "../../../../../Common/Utils/useWindowDimension";
 
 import ImageModal from "../../../../Common/ImageModal/ImageModal";
 
@@ -71,11 +72,11 @@ function getImageProperty(width: number, index: number, imagesLength: number) {
   let isBlur = false;
   let isRenderPreview = true;
 
-  if (width < 768) {
+  if (width < BrowserWidth.MOBILE) {
     isBlur = index >= 1 && imagesLength > 2;
     plusText = imagesLength - 1;
     if (index >= 2) isRenderPreview = false;
-  } else if (width < 1280) {
+  } else if (width < BrowserWidth.TABLET) {
     isBlur = index >= 2 && imagesLength > 3;
     plusText = imagesLength - 2;
     if (index >= 3) isRenderPreview = false;
