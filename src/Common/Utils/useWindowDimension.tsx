@@ -8,7 +8,7 @@ function getWindowDimensions() {
   };
 }
 
-export default function useWindowDimension() {
+export function useWindowDimension() {
   const [windowDimension, setWindowDimension] = useState(getWindowDimensions());
 
   useEffect(() => {
