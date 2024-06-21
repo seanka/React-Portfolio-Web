@@ -18,6 +18,7 @@ const CloudImages: React.FC<props> = (props) => {
   return Array.from({ length: count }).map((_, i) => {
     return (
       <ImageRandomPosition
+        key={i}
         src={Images.ic_cloud}
         multiplier={i * 1.5}
         minX={10}

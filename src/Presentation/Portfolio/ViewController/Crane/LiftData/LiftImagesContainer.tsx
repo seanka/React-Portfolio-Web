@@ -27,12 +27,11 @@ const LiftImagesContainer: React.FC<props> = (props) => {
     const { isBlur, plusText, isRenderPreview } = getImageProperty(width, index, data.images!.length);
 
     return (
-      <>
+      <React.Fragment key={index}>
         {isRenderPreview && (
           <Box mr={2} boxSize={PIC_SIZE} position="relative">
             <Image
               onClick={() => onOpenImageModal(image)}
-              key={index}
               alt={image.alt}
               src={image.image}
               objectFit="cover"
@@ -49,7 +48,6 @@ const LiftImagesContainer: React.FC<props> = (props) => {
 
         {getImageModal().alt === image.alt && getImageModal().image === image.image && (
           <ImageModal
-            key={image.alt}
             title={data.title!}
             description={data.description!}
             isOpen={true}
@@ -60,7 +58,7 @@ const LiftImagesContainer: React.FC<props> = (props) => {
             handleOnTapNext={() => onTapNextImageModal(index, data.images!)}
           />
         )}
-      </>
+      </React.Fragment>
     );
   });
 };

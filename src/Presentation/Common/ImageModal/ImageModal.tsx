@@ -7,7 +7,6 @@ import { ImageProperty } from "../../../Common/Interface/ImageProperty";
 import ImageModalControl from "./ImageModalControl";
 
 interface props {
-  key: string;
   title: string;
   description: string;
   isOpen: boolean;
@@ -20,11 +19,11 @@ interface props {
 }
 
 const ImageModal: React.FC<props> = (props) => {
-  const { key, title, description, isOpen, windowWidth, image } = props;
+  const { title, description, isOpen, windowWidth, image } = props;
   const { handleOnClose, handleOnTapNext, handleOnTapPrev } = props;
 
   return (
-    <Modal key={key} onClose={handleOnClose} isOpen={isOpen} isCentered>
+    <Modal onClose={handleOnClose} isOpen={isOpen} isCentered>
       <ModalOverlay />
       <ModalContent maxWidth={windowWidth - windowWidth / 3.5}>
         <ModalHeader>{title}</ModalHeader>
@@ -37,7 +36,7 @@ const ImageModal: React.FC<props> = (props) => {
           </Box>
         </ModalBody>
         <ModalFooter width="100%" display="flex" justifyContent="flex-start">
-          <Text width="100%" mr={10} ml={10}>
+          <Text as="span" width="100%" mr={10} ml={10}>
             {parse(description)}
           </Text>
         </ModalFooter>

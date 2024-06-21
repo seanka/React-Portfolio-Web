@@ -20,6 +20,7 @@ const BirdImages: React.FC<props> = (props) => {
 
     return (
       <ImageRandomPosition
+        key={i}
         src={image}
         multiplier={i / 1.75}
         minX={10}

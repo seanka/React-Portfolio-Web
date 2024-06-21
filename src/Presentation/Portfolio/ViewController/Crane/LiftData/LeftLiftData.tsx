@@ -28,10 +28,9 @@ const LeftLiftData: React.FC<props> = (props) => {
       <Box display="flex" flexDirection="row" marginTop={2} alignSelf="flex-start" justifyContent="flex-start">
         {data.framework?.map((icon, index) => {
           return (
-            <Tooltip placement="top" label={icon.hover}>
+            <Tooltip key={index} placement="top" label={icon.hover}>
               <Image
                 p={1}
-                key={index}
                 alt={icon.alt}
                 marginRight={2}
                 src={icon.image}
