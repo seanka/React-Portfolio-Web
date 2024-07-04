@@ -5,6 +5,7 @@ import { Portfolio } from "../../../Domain/Entities/Portfolio";
 import PortfolioDataSource from "../../../Data/Remotes/PortolioDataSource";
 
 import { ImageProperty } from "../../../Common/Interface/ImageProperty";
+import { PortfolioKey } from "../../../Common/Enum/LocalData/PortfolioKey";
 
 export function PortfolioViewModel() {
   const [isLoading, setIsLoading] = useState<Boolean>(false);
@@ -14,7 +15,7 @@ export function PortfolioViewModel() {
 
   const [imageModal, setImageModal] = useState<ImageProperty>({ alt: "", image: "" });
 
-  //* Get Variable Methods
+  //* Getter Methods
   function getIsLoading() {
     return isLoading;
   }
@@ -31,7 +32,22 @@ export function PortfolioViewModel() {
     return imageModal;
   }
 
-  //* Logic Methods
+  function getCloudLocalCoordinates() {
+    const data = localStorage.getItem(PortfolioKey.cloudDecoCoordinates) || "[]";
+    const parsedData = JSON.parse(data ?? "");
+
+    return parsedData;
+  }
+
+  function getBirdLocalCoordinates() {
+    const data = localStorage.getItem(PortfolioKey.birdDecoCoordinates) || "[]";
+
+    const parsedData = JSON.parse(data ?? "");
+
+    return parsedData;
+  }
+
+  //* Setter Methods
   function onCloseImageModal() {
     setImageModal({ alt: "", image: "" });
   }
@@ -50,6 +66,14 @@ export function PortfolioViewModel() {
     if (index === 0) return;
 
     setImageModal(images[index - 1]);
+  }
+
+  function saveCloudGeneratedCoordinates(value: ImageProperty[]) {
+    localStorage.setItem(PortfolioKey.cloudDecoCoordinates, JSON.stringify(value));
+  }
+
+  function saveBirdGeneratedCoordinates(value: ImageProperty[]) {
+    localStorage.setItem(PortfolioKey.birdDecoCoordinates, JSON.stringify(value));
   }
 
   // * API Call Methods
@@ -73,6 +97,8 @@ export function PortfolioViewModel() {
     getPortfolioList,
     getIsShowDecoration,
     getImageModal,
+    getCloudLocalCoordinates,
+    getBirdLocalCoordinates,
 
     requestPortfolioList,
 
@@ -80,5 +106,7 @@ export function PortfolioViewModel() {
     onOpenImageModal,
     onTapNextImageModal,
     onTapPrevImageModal,
+    saveCloudGeneratedCoordinates,
+    saveBirdGeneratedCoordinates,
   };
 }

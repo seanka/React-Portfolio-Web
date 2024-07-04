@@ -27,7 +27,9 @@ const RightLiftData: React.FC<props> = (props) => {
       </Box>
 
       <Box marginLeft={BOX_DESCRIPTION_LEFT_MARGIN} marginTop={1}>
-        <Text fontSize={FONT_DESCRIPTION_SIZE}>{parse(data.briefDesc!)}</Text>
+        <Text as="span" fontSize={FONT_DESCRIPTION_SIZE}>
+          {parse(data.briefDesc!)}
+        </Text>
       </Box>
     </Box>
   );

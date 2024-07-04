@@ -52,9 +52,9 @@ const PortfolioViewController: React.FC = () => {
       {/* Land */}
       <Box w="100%" bg="green" height={[16, null, 20, null, 24]} sx={{ position: "absolute", bottom: 0 }} />
 
-      {isShowDecoration ? <CloudImages count={3} height={height} parentDimension={dimension} /> : null}
+      {isShowDecoration ? <CloudImages count={3} height={height} parentDimension={dimension} portfolioVM={portfolioVM} /> : null}
 
-      {isShowDecoration ? <BirdImages count={6} height={height} parentDimension={dimension} /> : null}
+      {isShowDecoration ? <BirdImages count={6} height={height} parentDimension={dimension} portfolioVM={portfolioVM} /> : null}
 
       <CraneSkeleton portfolioLength={portfolioLength} />
 
