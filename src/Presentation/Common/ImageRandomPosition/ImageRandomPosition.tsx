@@ -1,8 +1,10 @@
 import React from "react";
 import { Box, Image } from "@chakra-ui/react";
 
-import { useWindowDimension } from "../../../Common/Utils/useWindowDimension";
 import { generateRandomPosition } from "../../../Common/Utils/generateRandomPosition";
+
+import { Dimension } from "../../../Common/Interface/Dimension";
+import { ImageProperty } from "../../../Common/Interface/ImageProperty";
 
 interface props {
   src: string;
@@ -14,34 +16,58 @@ interface props {
   imageSize?: (number | null)[];
   imageWidth?: (number | null)[];
   imageHeight?: (number | null)[];
+  imageCoordinates?: ImageProperty;
+  isGenerateImageCoordinates: boolean;
+  saveGeneratedImageCoordinate?: (value: Dimension) => void;
 }
 
 const ImageRandomPosition: React.FC<props> = (props) => {
-  const { width, height } = useWindowDimension();
-
-  const { src, minX = 0, maxX = width, minY = 0, maxY = height, multiplier = 1, imageWidth, imageHeight, imageSize } = props;
+  const {
+    src,
+    minX = 0,
+    maxX = 0,
+    minY = 0,
+    maxY = 0,
+    multiplier = 1,
+    imageWidth,
+    imageHeight,
+    imageSize,
+    imageCoordinates,
+    isGenerateImageCoordinates,
+    saveGeneratedImageCoordinate,
+  } = props;
 
   if (minX >= maxX || minY >= maxY) {
     return;
   }
 
-  const { xPos, yPos } = generateRandomPosition(minX, maxX, minY, maxY, multiplier);
-
   const imageSizeProps = imageSize ? { boxSize: imageSize } : { width: imageWidth, height: imageHeight };
 
-  if (Math.random() <= 0.5) {
-    return (
-      <Box position="absolute" bottom={yPos} right={xPos}>
-        <Image src={src} {...imageSizeProps} />
-      </Box>
-    );
-  } else {
-    return (
-      <Box position="absolute" bottom={yPos} left={xPos}>
-        <Image src={src} {...imageSizeProps} />
-      </Box>
-    );
+  if (isGenerateImageCoordinates) {
+    const { xPos, yPos } = generateRandomPosition(minX, maxX, minY, maxY, multiplier);
+
+    saveGeneratedImageCoordinate!({ bottom: yPos, right: xPos });
+
+    if (Math.random() <= 0.5) {
+      return (
+        <Box position="absolute" bottom={yPos} right={xPos}>
+          <Image src={src} {...imageSizeProps} />
+        </Box>
+      );
+    } else {
+      return (
+        <Box position="absolute" bottom={yPos} left={xPos}>
+          <Image src={src} {...imageSizeProps} />
+        </Box>
+      );
+    }
   }
+
+  return (
+    <Box position="absolute" bottom={imageCoordinates?.dimension?.bottom} right={imageCoordinates?.dimension?.right}>
+      <Image src={src} {...imageSizeProps} />
+    </Box>
+  );
 };
 
 export default ImageRandomPosition;
