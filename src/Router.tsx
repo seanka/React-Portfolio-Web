@@ -12,7 +12,19 @@ const Router = createBrowserRouter(
       element: <Root />,
       children: [
         {
+          path: RouteNavigation.home,
+          element: <PortfolioViewController />,
+        },
+        {
+          path: RouteNavigation.about,
+          element: <PortfolioViewController />,
+        },
+        {
           path: RouteNavigation.portfolio,
+          element: <PortfolioViewController />,
+        },
+        {
+          path: RouteNavigation.contact,
           element: <PortfolioViewController />,
         },
       ],
