@@ -5,6 +5,7 @@ import { usePageRefresh } from "../../Common/Utils/usePageRefresh";
 
 import { RouteNavigation } from "../../Common/Enum/RouteNavigation";
 import { PortfolioKey } from "../../Common/Enum/LocalData/PortfolioKey";
+import { Text } from "@chakra-ui/react";
 
 function Root() {
   const isPageReloaded = usePageRefresh();
@@ -19,6 +20,7 @@ function Root() {
   return (
     <>
       <Navigate to={RouteNavigation.portfolio} />
+      <Text className="text-9xl font-bold underline">HALO</Text>
       <Outlet />
     </>
   );
