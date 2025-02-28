@@ -18,13 +18,8 @@
 @font-face {
     font-family: SFPro;
     font-weight: 400;
-    src: url('./src/Resources/Fonts/SFPro/Academy\ Engraved\ LET\ Fonts.ttf') format("truetype");
-}
-/* @font-face {
-    font-family: SFPro;
-    font-weight: 400;
     src: url('./src/Resources/Fonts/SFPro/SFProDisplay-Regular.woff') format("woff");
-} */
+}
 @font-face {
     font-family: SFPro;
     font-weight: 500;

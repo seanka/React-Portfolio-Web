@@ -19,18 +19,6 @@ function Root() {
 
   return (
     <>
-      <Navigate to={RouteNavigation.portfolio} />
-      <Text className="font-sfpro text-3xl underline">HALO</Text>
-      <Text className="text-3xl underline">HALO</Text>
-      <Text
-        style={{ fontFamily: "SFPro" }}
-        className="font-sfpro text-3xl underline"
-      >
-        the quick brown fox jumps over the lazy dog
-      </Text>
-      <Text className="text-3xl underline">
-        the quick brown fox jumps over the lazy dog
-      </Text>
       <Outlet />
     </>
   );
