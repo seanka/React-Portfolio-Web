@@ -2,18 +2,19 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { RouteNavigation } from "./Common/Enum/RouteNavigation";
 
-import Root from "./Presentation/Common/Root";
 import PortfolioViewController from "./Presentation/Portfolio/ViewController/PortfolioViewController";
+import { RootViewController } from "./Presentation/Modules/Core/Root/ViewController/RootViewController";
+import { HomeViewController } from "./Presentation/Modules/Home/ViewController/HomeViewController";
 
 const Router = createBrowserRouter(
   [
     {
       path: "/",
-      element: <Root />,
+      element: <RootViewController />,
       children: [
         {
           path: RouteNavigation.home,
-          element: <PortfolioViewController />,
+          element: <HomeViewController />,
         },
         {
           path: RouteNavigation.about,
@@ -30,7 +31,7 @@ const Router = createBrowserRouter(
       ],
     },
   ],
-  { basename: import.meta.env.BASE_URL }
+  { basename: import.meta.env.BASE_URL },
 );
 
 export default Router;
