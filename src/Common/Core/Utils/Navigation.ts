@@ -1,18 +1,29 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+
+import { NavigationProps } from "../../../Domain/Entities/Core/NavigationProps";
 
 const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const param = useParams();
 
-  const navigateToPath = (path: string, params?: Object) => {
-    navigate(path, { state: params });
+  const navigateToPath = (props: NavigationProps) => {
+    const { path, params, replace = false } = props;
+
+    navigate(path, { state: params, replace: replace });
   };
 
   const getCurrentPath = () => {
-    return location.pathname;
+    const segments = location.pathname.split("/").filter(Boolean);
+    return segments.length > 0 ? `/${segments[0]}` : "segments";
+  };
+
+  const getUrlParam = () => {
+    return param;
   };
 
   return {
+    getUrlParam,
     navigateToPath,
     getCurrentPath,
   };

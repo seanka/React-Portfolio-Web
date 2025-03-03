@@ -1,24 +1,40 @@
 import { initializeApp } from "firebase/app";
-import { Firestore, collection, getDocs, getFirestore, orderBy, query } from "firebase/firestore";
+import {
+  Firestore,
+  collection,
+  getDocs,
+  getFirestore,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 
 import { AppCheckKey, FirebaseConfig } from "./FirebaseConfig";
 import { ReCaptchaV3Provider, initializeAppCheck } from "firebase/app-check";
 
-interface props {
-  col: string;
-  order?: string;
-  sort?: "asc" | "desc";
-}
+import { RemoteCollectionRequest } from "../../../Domain/Entities/Core/RemoteCollectionRequest";
 
 export function BaseRemote() {
-  async function requestCollection(props: props) {
+  async function requestCollection(props: RemoteCollectionRequest) {
     try {
-      const { col, order = "", sort } = props;
+      const { col, order, sort, whereCondition } = props;
 
       const db = firestore();
-
       const colRef = collection(db, col);
-      const q = query(colRef, orderBy(order, sort));
+
+      let q = query(colRef);
+
+      if (order) {
+        q = query(q, orderBy(order, sort));
+      }
+
+      whereCondition?.forEach(
+        (condition) =>
+          (q = query(
+            q,
+            where(condition.field, condition.operator, condition.value),
+          )),
+      );
 
       const data = await getDocs(q);
 
