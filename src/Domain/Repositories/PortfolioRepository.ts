@@ -1,5 +1,7 @@
-import { Portfolio } from "../Entities/Portfolio";
+import { Portfolio } from "../Entities/Portfolio/Portfolio";
+import { PortfolioCategoryItem } from "../Entities/Portfolio/PortfolioCategoryItem";
 
 export interface PortfolioRepository {
-  requestPortfolio(): Promise<Portfolio[]>;
+  requestPortfolioList(category: string): Promise<Portfolio[]>;
+  requestPortfolioCategory(): Promise<PortfolioCategoryItem[]>;
 }

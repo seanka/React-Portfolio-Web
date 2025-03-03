@@ -2,9 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { RouteNavigation } from "./Common/Enum/RouteNavigation";
 
-import PortfolioViewController from "./Presentation/Portfolio/ViewController/PortfolioViewController";
 import { RootViewController } from "./Presentation/Modules/Core/Root/ViewController/RootViewController";
 import { HomeViewController } from "./Presentation/Modules/Home/ViewController/HomeViewController";
+import { PortfolioViewController } from "./Presentation/Modules/Portfolio/ViewController/PortfolioViewController";
 
 const Router = createBrowserRouter(
   [
@@ -21,7 +21,7 @@ const Router = createBrowserRouter(
           element: <PortfolioViewController />,
         },
         {
-          path: RouteNavigation.portfolio,
+          path: `${RouteNavigation.portfolio}/:category?`,
           element: <PortfolioViewController />,
         },
         {
