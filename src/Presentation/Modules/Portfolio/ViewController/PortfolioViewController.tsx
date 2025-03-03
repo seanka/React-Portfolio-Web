@@ -49,14 +49,14 @@ export const PortfolioViewController: React.FC = () => {
 
   return (
     <Box className="flex h-screen flex-row">
-      {/* CATEGORY LISTS */}
-      <Box className="h-screen w-0 bg-[#222222] sm:w-[30%] md:w-[20%]">
+      <Box className="h-screen w-[30%] bg-[#222222] md:w-[25%]">
         <Text className="font-sfpro py-2 pl-4 text-xs text-[#939393]">
           Category List
         </Text>
 
         <Box className="h-[1px] w-full bg-[#939393]" />
 
+        {/* Category List Cards */}
         {portfolioVM.PortfolioCategory?.map((item) => (
           <Box
             key={item.id}
