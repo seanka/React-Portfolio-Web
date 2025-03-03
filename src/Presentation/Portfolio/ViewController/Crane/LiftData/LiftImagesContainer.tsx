@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Image, Text } from "@chakra-ui/react";
 
-import { Portfolio } from "../../../../../Domain/Entities/Portfolio";
+import { Portfolio } from "../../../../../Domain/Entities/Portfolio/Portfolio";
 
 import { BrowserWidth } from "../../../../../Common/Enum/BrowserWidth";
 import { BoxAspectRatio } from "../../../../../Common/Interface/AspectRatio";
@@ -21,10 +21,20 @@ const LiftImagesContainer: React.FC<props> = (props) => {
 
   const { width } = useWindowDimension();
 
-  const { getImageModal, onCloseImageModal, onOpenImageModal, onTapNextImageModal, onTapPrevImageModal } = portfolioVM;
+  const {
+    getImageModal,
+    onCloseImageModal,
+    onOpenImageModal,
+    onTapNextImageModal,
+    onTapPrevImageModal,
+  } = portfolioVM;
 
   return data.images!.map((image, index) => {
-    const { isBlur, plusText, isRenderPreview } = getImageProperty(width, index, data.images!.length);
+    const { isBlur, plusText, isRenderPreview } = getImageProperty(
+      width,
+      index,
+      data.images!.length,
+    );
 
     return (
       <React.Fragment key={index}>
@@ -40,24 +50,31 @@ const LiftImagesContainer: React.FC<props> = (props) => {
               filter={isBlur ? "blur(2px)" : ""}
             />
 
-            <Text position="absolute" top="50%" left="50%" color="white" transform="translate(-50%,-50%)">
+            <Text
+              position="absolute"
+              top="50%"
+              left="50%"
+              color="white"
+              transform="translate(-50%,-50%)"
+            >
               {isBlur ? `+${plusText}` : ""}
             </Text>
           </Box>
         )}
 
-        {getImageModal().alt === image.alt && getImageModal().image === image.image && (
-          <ImageModal
-            title={data.title!}
-            description={data.description!}
-            isOpen={true}
-            windowWidth={width}
-            image={data.images![index]}
-            handleOnClose={() => onCloseImageModal()}
-            handleOnTapPrev={() => onTapPrevImageModal(index, data.images!)}
-            handleOnTapNext={() => onTapNextImageModal(index, data.images!)}
-          />
-        )}
+        {getImageModal().alt === image.alt &&
+          getImageModal().image === image.image && (
+            <ImageModal
+              title={data.title!}
+              description={data.description!}
+              isOpen={true}
+              windowWidth={width}
+              image={data.images![index]}
+              handleOnClose={() => onCloseImageModal()}
+              handleOnTapPrev={() => onTapPrevImageModal(index, data.images!)}
+              handleOnTapNext={() => onTapNextImageModal(index, data.images!)}
+            />
+          )}
       </React.Fragment>
     );
   });
@@ -93,6 +110,18 @@ const PIC_ASPECT_RATIO: BoxAspectRatio = {
   big: { size: 40, borderRad: 8 },
 };
 
-const PIC_SIZE = [PIC_ASPECT_RATIO.small.size, null, PIC_ASPECT_RATIO.med.size, null, PIC_ASPECT_RATIO.big.size];
+const PIC_SIZE = [
+  PIC_ASPECT_RATIO.small.size,
+  null,
+  PIC_ASPECT_RATIO.med.size,
+  null,
+  PIC_ASPECT_RATIO.big.size,
+];
 
-const PIC_BORDER_RADIUS = [PIC_ASPECT_RATIO.small.borderRad!, null, PIC_ASPECT_RATIO.med.borderRad!, null, PIC_ASPECT_RATIO.big.borderRad!];
+const PIC_BORDER_RADIUS = [
+  PIC_ASPECT_RATIO.small.borderRad!,
+  null,
+  PIC_ASPECT_RATIO.med.borderRad!,
+  null,
+  PIC_ASPECT_RATIO.big.borderRad!,
+];

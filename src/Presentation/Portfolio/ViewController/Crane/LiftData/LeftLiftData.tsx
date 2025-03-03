@@ -4,7 +4,7 @@ import { Box, Image, Text, Tooltip } from "@chakra-ui/react";
 import { BoxAspectRatio } from "../../../../../Common/Interface/AspectRatio";
 import { useWindowDimension } from "../../../../../Common/Utils/useWindowDimension";
 
-import { Portfolio } from "../../../../../Domain/Entities/Portfolio";
+import { Portfolio } from "../../../../../Domain/Entities/Portfolio/Portfolio";
 
 interface props {
   data: Portfolio;
@@ -16,7 +16,12 @@ const LeftLiftData: React.FC<props> = (props) => {
   const { width } = useWindowDimension();
 
   return (
-    <Box width={width / 4 - 10} justifyContent="center" display="flex" flexDirection="column">
+    <Box
+      width={width / 4 - 10}
+      justifyContent="center"
+      display="flex"
+      flexDirection="column"
+    >
       <Text as="b" fontSize={FONT_TITLE_SIZE}>
         {data.title}
       </Text>
@@ -25,7 +30,13 @@ const LeftLiftData: React.FC<props> = (props) => {
         {data.field}
       </Text>
 
-      <Box display="flex" flexDirection="row" marginTop={2} alignSelf="flex-start" justifyContent="flex-start">
+      <Box
+        display="flex"
+        flexDirection="row"
+        marginTop={2}
+        alignSelf="flex-start"
+        justifyContent="flex-start"
+      >
         {data.framework?.map((icon, index) => {
           return (
             <Tooltip key={index} placement="top" label={icon.hover}>
@@ -59,7 +70,13 @@ const FONT_TITLE_SIZE = [12, null, 22, null, 32];
 
 const FONT_FIELD_SIZE = [8, null, 12, null, 16];
 
-const IC_FRAMEWORK_SIZE = [IC_FRAMEWORK_ASPECT_RATIO.small.size, null, IC_FRAMEWORK_ASPECT_RATIO.med.size, null, IC_FRAMEWORK_ASPECT_RATIO.big.size];
+const IC_FRAMEWORK_SIZE = [
+  IC_FRAMEWORK_ASPECT_RATIO.small.size,
+  null,
+  IC_FRAMEWORK_ASPECT_RATIO.med.size,
+  null,
+  IC_FRAMEWORK_ASPECT_RATIO.big.size,
+];
 
 const IC_FRAMEWORK_BORDER_RAD = [
   IC_FRAMEWORK_ASPECT_RATIO.small.borderRad!,

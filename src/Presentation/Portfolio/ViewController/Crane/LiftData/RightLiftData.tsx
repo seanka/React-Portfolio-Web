@@ -2,7 +2,7 @@ import React from "react";
 import parse from "html-react-parser";
 import { Box, Text } from "@chakra-ui/react";
 
-import { Portfolio } from "../../../../../Domain/Entities/Portfolio";
+import { Portfolio } from "../../../../../Domain/Entities/Portfolio/Portfolio";
 
 import { useWindowDimension } from "../../../../../Common/Utils/useWindowDimension";
 
@@ -21,7 +21,13 @@ const RightLiftData: React.FC<props> = (props) => {
   const { width } = useWindowDimension();
 
   return (
-    <Box width={width / 3 - 10} justifyContent="center" alignItems="flex-start" display="flex" flexDirection="column">
+    <Box
+      width={width / 3 - 10}
+      justifyContent="center"
+      alignItems="flex-start"
+      display="flex"
+      flexDirection="column"
+    >
       <Box flexDirection="row" display="flex">
         <LiftImagesContainer data={data} portfolioVM={portfolioVM} />
       </Box>

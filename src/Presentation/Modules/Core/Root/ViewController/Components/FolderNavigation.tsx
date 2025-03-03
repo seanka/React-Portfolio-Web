@@ -21,7 +21,7 @@ export const FolderNavigation: React.FC<props> = (props) => {
     <Box
       className="mr-2 flex flex-row items-center rounded-sm px-3 py-1"
       backgroundColor={isActiveRoute ? "#AF8E25" : ""}
-      onClick={() => navigateToPath(navItem.path)}
+      onClick={() => navigateToPath({ path: navItem.path })}
     >
       <Image
         src={isActiveRoute ? Images.ic_folder_white : Images.ic_folder_orange}

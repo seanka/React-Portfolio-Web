@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 
-import { Portfolio } from "../../../../Domain/Entities/Portfolio";
+import { Portfolio } from "../../../../Domain/Entities/Portfolio/Portfolio";
 
 import { AspectRatio } from "../../../../Common/Interface/AspectRatio";
 
@@ -32,7 +32,8 @@ const CraneRightLift: React.FC<props> = (props) => {
           (index + 1) * CRANE_LIFT_ASPECT_RATIO.med.height + (index + 1) * 80,
           null,
           (index + 1) * CRANE_LIFT_ASPECT_RATIO.big.height + (index + 1) * 100,
-        ]}>
+        ]}
+      >
         <RightLiftData data={data} portfolioVM={portfolioVM} />
       </Box>
     );
@@ -47,4 +48,10 @@ const CRANE_LIFT_ASPECT_RATIO: AspectRatio = {
   big: { width: 240, height: 290 },
 };
 
-const CRANE_LIFT_HEIGHT = [CRANE_LIFT_ASPECT_RATIO.small.height, null, CRANE_LIFT_ASPECT_RATIO.med.height, null, CRANE_LIFT_ASPECT_RATIO.big.height];
+const CRANE_LIFT_HEIGHT = [
+  CRANE_LIFT_ASPECT_RATIO.small.height,
+  null,
+  CRANE_LIFT_ASPECT_RATIO.med.height,
+  null,
+  CRANE_LIFT_ASPECT_RATIO.big.height,
+];

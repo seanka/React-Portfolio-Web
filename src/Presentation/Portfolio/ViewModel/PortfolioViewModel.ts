@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Portfolio } from "../../../Domain/Entities/Portfolio";
+import { Portfolio } from "../../../Domain/Entities/Portfolio/Portfolio";
 
 import PortfolioDataSource from "../../../Data/Remotes/PortolioDataSource";
 
@@ -13,7 +13,10 @@ export function PortfolioViewModel() {
 
   const [isShowDecoration, setIsShowDecoration] = useState(false);
 
-  const [imageModal, setImageModal] = useState<ImageProperty>({ alt: "", image: "" });
+  const [imageModal, setImageModal] = useState<ImageProperty>({
+    alt: "",
+    image: "",
+  });
 
   //* Getter Methods
   function getIsLoading() {
@@ -33,7 +36,8 @@ export function PortfolioViewModel() {
   }
 
   function getCloudLocalCoordinates() {
-    const data = localStorage.getItem(PortfolioKey.cloudDecoCoordinates) || "[]";
+    const data =
+      localStorage.getItem(PortfolioKey.cloudDecoCoordinates) || "[]";
     const parsedData = JSON.parse(data ?? "");
 
     return parsedData;
@@ -69,11 +73,17 @@ export function PortfolioViewModel() {
   }
 
   function saveCloudGeneratedCoordinates(value: ImageProperty[]) {
-    localStorage.setItem(PortfolioKey.cloudDecoCoordinates, JSON.stringify(value));
+    localStorage.setItem(
+      PortfolioKey.cloudDecoCoordinates,
+      JSON.stringify(value),
+    );
   }
 
   function saveBirdGeneratedCoordinates(value: ImageProperty[]) {
-    localStorage.setItem(PortfolioKey.birdDecoCoordinates, JSON.stringify(value));
+    localStorage.setItem(
+      PortfolioKey.birdDecoCoordinates,
+      JSON.stringify(value),
+    );
   }
 
   // * API Call Methods
