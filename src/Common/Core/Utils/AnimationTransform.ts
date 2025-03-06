@@ -10,6 +10,22 @@ const AnimationTransform = {
         transform: translateX(${end});
       }
     `,
+
+  reshape: (
+    startWidth: string,
+    endWidth: string,
+    startMargin: string,
+    endMargin: string,
+  ) => keyframes`
+    from {
+      width: ${startWidth};
+      margin-left: ${startMargin};
+    }
+    to {
+      width: ${endWidth};
+      margin-left: ${endMargin};
+    }
+  `,
 } as const;
 
 export default AnimationTransform;
