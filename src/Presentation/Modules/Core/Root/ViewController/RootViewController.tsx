@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Box, useBreakpointValue } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
@@ -8,16 +8,26 @@ import { SideBar } from "./Components/SideBar";
 
 import RootViewModel from "../ViewModel/RootViewModel";
 import AnimationTransform from "../../../../../Common/Core/Utils/AnimationTransform";
+import Navigation from "../../../../../Common/Core/Utils/Navigation";
+import NavigationPath from "../../../../../Common/Core/NavigationPath";
 
 export const RootViewController: React.FC = () => {
   const rootVM = RootViewModel();
   const sideBarState = rootVM.getSideBarState();
+
+  const navigation = Navigation();
 
   const slideBreakpoint = useBreakpointValue({
     sm: "100%",
     md: "20%",
     lg: "15%",
   });
+
+  useEffect(() => {
+    if (navigation.getCurrentPath() == null) {
+      navigation.navigateToPath(NavigationPath.home);
+    }
+  }, []);
 
   return (
     <Box className="flex h-screen flex-row">
