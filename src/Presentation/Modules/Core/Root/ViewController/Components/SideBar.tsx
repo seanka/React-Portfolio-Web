@@ -2,7 +2,7 @@ import { Box, Text } from "@chakra-ui/react";
 
 import { FolderNavigation } from "./FolderNavigation";
 
-import RouteNavigationItems from "../../../../../../Common/Core/NavigationPath";
+import NavigationPath from "../../../../../../Common/Core/NavigationPath";
 
 interface props {
   animation: {};
@@ -18,7 +18,7 @@ export const SideBar: React.FC<props> = (props) => {
       </Text>
 
       <Box className="mt-2">
-        {RouteNavigationItems.map((item) => (
+        {Object.values(NavigationPath).map((item) => (
           <FolderNavigation key={item.title} navItem={item} />
         ))}
       </Box>

@@ -15,7 +15,7 @@ const Navigation = () => {
 
   const getCurrentPath = () => {
     const segments = location.pathname.split("/").filter(Boolean);
-    return segments.length > 0 ? `/${segments[0]}` : "segments";
+    return segments.length > 0 ? `/${segments[0]}` : null;
   };
 
   const getUrlParam = () => {
