@@ -8,6 +8,8 @@ import PortfolioDataSource from "../../../../Data/Remotes/PortolioDataSource";
 const PortfolioViewModel = () => {
   const ds = new PortfolioDataSource();
 
+  const [IsLoadPortfolioList, setIsLoadPortfolioList] =
+    useState<boolean>(false);
   const [PortfolioList, setPortfolioList] = useState<Portfolio[]>([]);
   const [PortfolioCategory, setPortfolioCategory] = useState<
     PortfolioCategoryItem[]
@@ -25,9 +27,10 @@ const PortfolioViewModel = () => {
   }
 
   async function requestPortfolioList() {
+    setIsLoadPortfolioList(true);
     const response = await ds.requestPortfolioList(ActivePortfolioCategory.id!);
     setPortfolioList(response);
-    console.log(response);
+    setIsLoadPortfolioList(false);
   }
 
   async function requestPortfolioCategory() {
@@ -40,6 +43,7 @@ const PortfolioViewModel = () => {
   return {
     PortfolioList,
     PortfolioCategory,
+    IsLoadPortfolioList,
     ActivePortfolioCategory,
     requestPortfolioList,
     requestPortfolioCategory,

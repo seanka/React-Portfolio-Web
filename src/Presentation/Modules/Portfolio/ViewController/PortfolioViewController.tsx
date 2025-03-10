@@ -4,6 +4,7 @@ import { Box, Text } from "@chakra-ui/react";
 
 import { PortfolioItem } from "./Component/PortfolioItem";
 import { PortfolioCategory } from "./Component/PortfolioCategory";
+import { SpinnerLoader } from "../../../Common/SpinnerLoader/SpinnerLoader";
 
 import PortfolioViewModel from "../ViewModel/PortfolioViewModel";
 import Navigation from "../../../../Common/Core/Utils/Navigation";
@@ -83,12 +84,21 @@ export const PortfolioViewController: React.FC = () => {
           {portfolioVM.ActivePortfolioCategory.title}
         </Text>
 
-        <Box className="mt-2">
-          {portfolioVM.PortfolioList.length > 0 &&
-            portfolioVM.PortfolioList.map((item) => (
-              <PortfolioItem key={item.title} item={item} />
-            ))}
-        </Box>
+        {/* Loader */}
+        {portfolioVM.IsLoadPortfolioList && (
+          <Box className="flex h-full items-center justify-center">
+            <SpinnerLoader />
+          </Box>
+        )}
+
+        {!portfolioVM.IsLoadPortfolioList && (
+          <Box className="mt-2">
+            {portfolioVM.PortfolioList.length > 0 &&
+              portfolioVM.PortfolioList.map((item) => (
+                <PortfolioItem key={item.title} item={item} />
+              ))}
+          </Box>
+        )}
       </Box>
     </Box>
   );

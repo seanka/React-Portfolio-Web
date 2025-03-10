@@ -14,7 +14,7 @@ export const FullScreenModalView: React.FC<props> = (props) => {
     <>
       {/* Background Overlay Container */}
       <Box
-        className="fixed top-0 left-0 z-40 h-lvh w-lvw bg-black opacity-90"
+        className="fixed top-0 left-0 z-40 h-lvh w-lvw bg-black opacity-85"
         onClick={onCloseModal}
       />
 
