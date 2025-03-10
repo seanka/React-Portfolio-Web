@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 import { Box, Text } from "@chakra-ui/react";
 
+import { PortfolioItem } from "./Component/PortfolioItem";
 import { PortfolioCategory } from "./Component/PortfolioCategory";
 
 import PortfolioViewModel from "../ViewModel/PortfolioViewModel";
@@ -49,7 +50,8 @@ export const PortfolioViewController: React.FC = () => {
 
   return (
     <Box className="flex h-screen flex-row">
-      <Box className="h-screen w-[30%] bg-[#222222] md:w-[25%]">
+      {/* Category List Tab */}
+      <Box className="h-screen w-[30%] bg-[#222222] md:w-[25%] lg:w-[20%]">
         <Text className="font-sfpro py-2 pl-4 text-xs text-[#939393]">
           Category List
         </Text>
@@ -75,7 +77,19 @@ export const PortfolioViewController: React.FC = () => {
         ))}
       </Box>
 
-      {/* <Box className="h-screen w-[40%] bg-[#1E1E1E]">Test</Box> */}
+      {/* Portfolio Content */}
+      <Box className="flex h-full w-full flex-col overflow-y-scroll bg-[#1E1E1E] px-6 pt-8">
+        <Text className="font-sfpro text-xl font-extrabold text-white">
+          {portfolioVM.ActivePortfolioCategory.title}
+        </Text>
+
+        <Box className="mt-2">
+          {portfolioVM.PortfolioList.length > 0 &&
+            portfolioVM.PortfolioList.map((item) => (
+              <PortfolioItem key={item.title} item={item} />
+            ))}
+        </Box>
+      </Box>
     </Box>
   );
 };
