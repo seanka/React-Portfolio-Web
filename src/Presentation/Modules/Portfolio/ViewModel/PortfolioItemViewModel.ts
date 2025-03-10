@@ -28,7 +28,6 @@ const PortfolioItemViewModel = (props: props) => {
   }
 
   function updateOpenFullScreenImage(props: string) {
-    console.log(props);
     setOpenFullScreenImage(props);
   }
 
