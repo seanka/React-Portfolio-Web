@@ -7,47 +7,62 @@ import { PortfolioCategory } from "./Component/PortfolioCategory";
 import { SpinnerLoader } from "../../../Common/SpinnerLoader/SpinnerLoader";
 
 import PortfolioViewModel from "../ViewModel/PortfolioViewModel";
+
 import Navigation from "../../../../Common/Core/Utils/Navigation";
 
 export const PortfolioViewController: React.FC = () => {
   const portfolioVM = PortfolioViewModel();
+  const {
+    PortfolioList,
+    IsLoadPortfolioList,
+    requestPortfolioList,
+    PortfolioCategoryList,
+    ActivePortfolioCategory,
+    requestPortfolioCategory,
+    setActivePortfolioCategory,
+    updateActivePortfolioCategoryBasedOnParam,
+  } = portfolioVM;
 
   const navigation = Navigation();
   const urlParam = navigation.getUrlParam();
 
   useEffect(() => {
-    portfolioVM.requestPortfolioCategory();
+    requestPortfolioCategory();
   }, []);
 
   useEffect(() => {
     /*
       Check whether the url param is empty
       If not empty, set active category automatically
+      If not empty, set active category to first item automatically
     */
     if (Object.keys(urlParam).length !== 0) {
       if (urlParam["category"] === "") {
         return;
       }
 
-      portfolioVM.updateActivePortfolioCategoryBasedOnParam(
-        urlParam["category"]!,
-      );
+      updateActivePortfolioCategoryBasedOnParam(urlParam["category"]!);
+      return;
     }
-  }, [portfolioVM.PortfolioCategory]);
+
+    if (PortfolioCategoryList.length > 0) {
+      setActivePortfolioCategory(PortfolioCategoryList[0]);
+    }
+  }, [PortfolioCategoryList]);
 
   useEffect(() => {
-    const activeCategory = portfolioVM.ActivePortfolioCategory;
+    const activeCategory = ActivePortfolioCategory;
 
     if (Object.keys(activeCategory).length === 0) {
       return;
     }
 
-    portfolioVM.requestPortfolioList();
+    requestPortfolioList();
     navigation.navigateToPath({
       path: `/portfolio/${activeCategory.id}`,
       replace: true,
     });
-  }, [portfolioVM.ActivePortfolioCategory]);
+  }, [ActivePortfolioCategory]);
 
   return (
     <Box className="flex h-screen flex-row">
@@ -60,7 +75,7 @@ export const PortfolioViewController: React.FC = () => {
         <Box className="h-[1px] w-full bg-[#939393]" />
 
         {/* Category List Cards */}
-        {portfolioVM.PortfolioCategory?.map((item) => (
+        {PortfolioCategoryList?.map((item) => (
           <Box
             key={item.id}
             className="my-2 mr-2 ml-2.5 rounded-lg px-6 py-4"
@@ -69,7 +84,7 @@ export const PortfolioViewController: React.FC = () => {
             }
             onClick={() =>
               urlParam["category"] !== item.id
-                ? portfolioVM.setActivePortfolioCategory(item)
+                ? setActivePortfolioCategory(item)
                 : null
             }
           >
@@ -81,20 +96,20 @@ export const PortfolioViewController: React.FC = () => {
       {/* Portfolio Content */}
       <Box className="flex h-full w-full flex-col overflow-y-scroll bg-[#1E1E1E] px-6 pt-8">
         <Text className="font-sfpro text-xl font-extrabold text-white">
-          {portfolioVM.ActivePortfolioCategory.title}
+          {ActivePortfolioCategory.title}
         </Text>
 
         {/* Loader */}
-        {portfolioVM.IsLoadPortfolioList && (
+        {IsLoadPortfolioList && (
           <Box className="flex h-full items-center justify-center">
             <SpinnerLoader />
           </Box>
         )}
 
-        {!portfolioVM.IsLoadPortfolioList && (
+        {!IsLoadPortfolioList && (
           <Box className="mt-2">
-            {portfolioVM.PortfolioList.length > 0 &&
-              portfolioVM.PortfolioList.map((item) => (
+            {PortfolioList.length > 0 &&
+              PortfolioList.map((item) => (
                 <PortfolioItem key={item.title} item={item} />
               ))}
           </Box>

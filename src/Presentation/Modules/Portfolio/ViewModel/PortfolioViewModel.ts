@@ -11,14 +11,16 @@ const PortfolioViewModel = () => {
   const [IsLoadPortfolioList, setIsLoadPortfolioList] =
     useState<boolean>(false);
   const [PortfolioList, setPortfolioList] = useState<Portfolio[]>([]);
-  const [PortfolioCategory, setPortfolioCategory] = useState<
+  const [PortfolioCategoryList, setPortfolioCategoryList] = useState<
     PortfolioCategoryItem[]
   >([]);
   const [ActivePortfolioCategory, setActivePortfolioCategory] =
     useState<PortfolioCategoryItem>({});
 
   function updateActivePortfolioCategoryBasedOnParam(urlParam: string) {
-    const activeObject = PortfolioCategory.find((item) => item.id === urlParam);
+    const activeObject = PortfolioCategoryList.find(
+      (item) => item.id === urlParam,
+    );
 
     if (activeObject === undefined) {
       return;
@@ -36,13 +38,12 @@ const PortfolioViewModel = () => {
   async function requestPortfolioCategory() {
     const response = await ds.requestPortfolioCategory();
 
-    setPortfolioCategory(response);
-    updateActivePortfolioCategoryBasedOnParam("iot");
+    setPortfolioCategoryList(response);
   }
 
   return {
     PortfolioList,
-    PortfolioCategory,
+    PortfolioCategoryList,
     IsLoadPortfolioList,
     ActivePortfolioCategory,
     requestPortfolioList,
