@@ -39,7 +39,7 @@ export const TechSkillsView: React.FC<props> = (props) => {
       {!techSkillsData && <Text>Loading</Text>}
 
       {techSkillsData && (
-        <Box className="flex h-[290px] flex-row md:h-[270px]">
+        <Box className="flex h-[320px] flex-row md:h-[270px]">
           {/* Category Selection List */}
           <Box className="h-full flex-2 flex-col items-center pl-1">
             {techSkillsData.categories?.map((item, index) => {
@@ -111,19 +111,17 @@ export const TechSkillsView: React.FC<props> = (props) => {
                   : "rounded-s-2xl"
             }`}
           >
-            <Box className="grid h-full grid-cols-2 items-center gap-4 md:grid-cols-3">
+            <Box className="grid h-full grid-cols-2 gap-4 md:grid-cols-3">
               {shuffledIconsData.map((item) => (
                 <Box
                   key={item.alt}
                   className={`${item.isLarger ? "row-span-2" : ""} flex items-center justify-center`}
-                  // className="flex items-center justify-center"
                 >
                   <Tooltip placement="top" label={item.hover}>
                     <Image
                       src={item.image}
                       alt={item.alt}
                       className={`${item.isLarger ? "w-20" : "w-12"} rounded-lg bg-white`}
-                      // className="w-10 rounded-lg bg-white"
                     />
                   </Tooltip>
                 </Box>

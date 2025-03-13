@@ -27,7 +27,7 @@ export const AboutSectionView: React.FC<props> = (props) => {
   }, []);
 
   return (
-    <Box key={section.title} className="mt-3 mb-5 bg-amber-200">
+    <Box key={section.title} className="mt-3 mb-5">
       {/* Title and Subtitle component
       In default screen (small), stacking top and bottom
       In larger screen, space between in the same row
