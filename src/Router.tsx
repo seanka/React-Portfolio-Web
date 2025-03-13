@@ -4,6 +4,7 @@ import { RouteNavigation } from "./Common/Enum/RouteNavigation";
 
 import { RootViewController } from "./Presentation/Modules/Core/Root/ViewController/RootViewController";
 import { HomeViewController } from "./Presentation/Modules/Home/ViewController/HomeViewController";
+import { AboutViewController } from "./Presentation/Modules/About/ViewController/AboutViewController";
 import { PortfolioViewController } from "./Presentation/Modules/Portfolio/ViewController/PortfolioViewController";
 
 const Router = createBrowserRouter(
@@ -18,7 +19,7 @@ const Router = createBrowserRouter(
         },
         {
           path: RouteNavigation.about,
-          element: <PortfolioViewController />,
+          element: <AboutViewController />,
         },
         {
           path: `${RouteNavigation.portfolio}/:category?`,
