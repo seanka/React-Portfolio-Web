@@ -14,7 +14,7 @@ export default class PortfolioDataSource implements PortfolioRepository {
     const data = await baseRemote.requestCollection({
       col: Collection.portfolio,
       order: "created",
-      sort: "asc",
+      sort: "desc",
       whereCondition: [
         { field: "category", operator: "==", value: category },
         { field: "isPublished", operator: "==", value: true },
