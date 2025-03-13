@@ -16,7 +16,7 @@ import {
 import { TechSkills } from "../../../../../Domain/Entities/About/TechSkill";
 
 import TechSkillViewModel from "../../ViewModel/TechSkillViewModel";
-import ShuffleArray from "../../../../../Common/Core/Utils/ArrayRandomizer";
+import ArrayExtension from "../../../../../Common/Core/Utils/ArrayExtension";
 
 interface props {
   techSkillsData: TechSkills | undefined;
@@ -30,7 +30,7 @@ export const TechSkillsView: React.FC<props> = (props) => {
 
   const activeCategoryId = techSkillsData?.categories?.[SelectedTab]?.id ?? "";
 
-  const shuffledIconsData = ShuffleArray(
+  const shuffledIconsData = ArrayExtension.ShuffleArray(
     techSkillsData?.category_data?.[activeCategoryId]?.icons ?? [],
   );
 

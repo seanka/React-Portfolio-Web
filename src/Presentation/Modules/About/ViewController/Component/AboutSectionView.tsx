@@ -8,6 +8,7 @@ import { AboutSectionsEnum } from "../../../../../Common/Enum/About/AboutSection
 import { TechSkillsView } from "./TechSkillsView";
 
 import AboutViewModel from "../../ViewModel/AboutViewModel";
+import { EducationView } from "./EducationView";
 
 interface props {
   section: AboutSection;
@@ -16,7 +17,7 @@ interface props {
 
 export const AboutSectionView: React.FC<props> = (props) => {
   const { section, aboutVM } = props;
-  const { requestAboutData, TechSkillsSection } = aboutVM;
+  const { requestAboutData, EducationSection, TechSkillsSection } = aboutVM;
 
   useEffect(() => {
     if (!section.id) {
@@ -45,6 +46,9 @@ export const AboutSectionView: React.FC<props> = (props) => {
       {/* Dynamic Component depending on section id */}
       {section.id === AboutSectionsEnum.TECHNICAL_SKILLS && (
         <TechSkillsView techSkillsData={TechSkillsSection.data} />
+      )}
+      {section.id === AboutSectionsEnum.EDUCATION && (
+        <EducationView educationData={EducationSection.data} />
       )}
     </Box>
   );

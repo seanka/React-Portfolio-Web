@@ -6,6 +6,7 @@ import { AboutSection } from "../../Domain/Entities/About/AboutSection";
 import { AboutRepository } from "../../Domain/Repositories/AboutRepository";
 import { BaseResponse } from "../../Domain/Entities/Core/BaseResponse";
 
+import { Education } from "../../Domain/Entities/About/Education";
 import { TechSkills } from "../../Domain/Entities/About/TechSkill";
 import { AboutSectionsEnum } from "../../Common/Enum/About/AboutSectionsEnum";
 
@@ -40,7 +41,7 @@ export default class AboutDataSource implements AboutRepository {
     if (document === AboutSectionsEnum.TECHNICAL_SKILLS) {
       response.data = aboutData?.data() as TechSkills;
     } else if (document === AboutSectionsEnum.EDUCATION) {
-      // response.data = aboutData?.data() as TechSkills;
+      response.data = aboutData?.data() as Education;
     } else if (document === AboutSectionsEnum.WORK_EXPERIENCE) {
       // response.data = aboutData?.data() as TechSkills;
     }

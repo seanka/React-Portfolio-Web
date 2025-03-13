@@ -5,6 +5,7 @@ import AboutDataSource from "../../../../Data/Remotes/AboutDataSource";
 import { AboutSection } from "../../../../Domain/Entities/About/AboutSection";
 import { AboutSectionsEnum } from "../../../../Common/Enum/About/AboutSectionsEnum";
 
+import { Education } from "../../../../Domain/Entities/About/Education";
 import { TechSkills } from "../../../../Domain/Entities/About/TechSkill";
 import { BaseResponse } from "../../../../Domain/Entities/Core/BaseResponse";
 
@@ -14,6 +15,9 @@ const AboutViewModel = () => {
   const [AboutSections, setAboutSections] = useState<AboutSection[]>([]);
   const [TechSkillsSection, setTechSkillsSection] = useState<
     BaseResponse<TechSkills>
+  >({});
+  const [EducationSection, setEducationSection] = useState<
+    BaseResponse<Education>
   >({});
 
   const [IsLoading, setIsLoading] = useState<boolean>(false);
@@ -30,12 +34,15 @@ const AboutViewModel = () => {
 
     if (section === AboutSectionsEnum.TECHNICAL_SKILLS) {
       setTechSkillsSection(response);
+    } else if (section === AboutSectionsEnum.EDUCATION) {
+      setEducationSection(response);
     }
   }
 
   return {
     IsLoading,
     AboutSections,
+    EducationSection,
     TechSkillsSection,
     requestAboutData,
     requestAboutSections,
