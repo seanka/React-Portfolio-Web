@@ -1,0 +1,24 @@
+const ArrayExtension = {
+  ShuffleArray: <T>(array: T[]): T[] => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  },
+
+  SortArrayByPosition: <T extends { position: number }>(array: T[]): T[] => {
+    return array.sort((a, b) => a.position - b.position);
+  },
+
+  sortByIssuedDate: <T extends { issued: string }>(array: T[]): T[] => {
+    return array.sort(
+      (a, b) =>
+        new Date(b.issued + "-01").getTime() -
+        new Date(a.issued + "-01").getTime(),
+    );
+  },
+} as const;
+
+export default ArrayExtension;

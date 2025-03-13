@@ -52,7 +52,7 @@ export const RootViewController: React.FC = () => {
             Larger than md: located next to the sidebar with dynamic width and dynamic margin left
           */}
           <Box
-            className={`${sideBarState ? "absolute hidden md:ml-[20%] md:w-[calc(100%-20%)] lg:ml-[15%] lg:w-[calc(100%-15%)]" : "w-full"} absolute overflow-y-scroll bg-amber-400 md:block`}
+            className={`${sideBarState ? "absolute hidden md:ml-[20%] md:w-[calc(100%-20%)] lg:ml-[15%] lg:w-[calc(100%-15%)]" : "w-full"} absolute overflow-y-scroll bg-[#1E1E1E] md:block`}
             animation={`${
               sideBarState
                 ? AnimationTransform.reshape(

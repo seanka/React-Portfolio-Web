@@ -2,6 +2,7 @@ import { WhereFilterOp } from "firebase/firestore";
 
 export interface RemoteCollectionRequest {
   col: string;
+  docs?: string;
   order?: string;
   sort?: "asc" | "desc";
   whereCondition?: QueryWhereCondition[];
