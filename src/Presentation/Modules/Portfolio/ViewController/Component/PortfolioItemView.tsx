@@ -118,7 +118,6 @@ export const PortfolioItemView: React.FC<props> = (props) => {
           </Text>
         </Box>
       </Box>
-      )
     </>
   );
 };
