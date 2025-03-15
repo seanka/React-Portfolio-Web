@@ -29,7 +29,7 @@ export const TechSkillsView: React.FC<props> = (props) => {
   }, [techSkillsData]);
 
   return (
-    <Box className="mt-3">
+    <Box className="mt-3 md:px-5">
       {!techSkillsData && <Text>Loading</Text>}
 
       {techSkillsData &&
