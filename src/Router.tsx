@@ -1,11 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { RouteNavigation } from "./Common/Enum/RouteNavigation";
-
 import { RootViewController } from "./Presentation/Modules/Core/Root/ViewController/RootViewController";
 import { HomeViewController } from "./Presentation/Modules/Home/ViewController/HomeViewController";
 import { AboutViewController } from "./Presentation/Modules/About/ViewController/AboutViewController";
 import { PortfolioViewController } from "./Presentation/Modules/Portfolio/ViewController/PortfolioViewController";
+import NavigationPath from "./Common/Core/NavigationPath";
 
 const Router = createBrowserRouter(
   [
@@ -14,19 +13,19 @@ const Router = createBrowserRouter(
       element: <RootViewController />,
       children: [
         {
-          path: RouteNavigation.home,
+          path: NavigationPath.home.path,
           element: <HomeViewController />,
         },
         {
-          path: RouteNavigation.about,
+          path: NavigationPath.about.path,
           element: <AboutViewController />,
         },
         {
-          path: `${RouteNavigation.portfolio}/:category?`,
+          path: `${NavigationPath.portfolio.path}/:category?`,
           element: <PortfolioViewController />,
         },
         {
-          path: RouteNavigation.contact,
+          path: NavigationPath.contact.path,
           element: <PortfolioViewController />,
         },
       ],
