@@ -47,7 +47,7 @@ export const TechSkillsView: React.FC<props> = (props) => {
             <Box key={item.title} className="flex flex-col">
               {/* Title Section */}
               <Box
-                className="flex flex-row justify-between py-2"
+                className="flex flex-row items-center justify-between px-2 py-2 md:px-3"
                 onClick={() => handleCategoryExpand(item.id ?? "")}
               >
                 <Text className="font-sfpro text-base font-bold text-white">
@@ -69,7 +69,7 @@ export const TechSkillsView: React.FC<props> = (props) => {
               If item < 3 (grid cols amount)
               */}
               {isItemExpanded && (
-                <Box className="mt-1 mb-4 grid h-full grid-cols-2 gap-4 md:grid-cols-3">
+                <Box className="mt-1 mb-4 grid h-full grid-cols-2 gap-4 px-2 md:grid-cols-3 md:px-3">
                   {shuffledIconsData.map((item) => (
                     <Box
                       key={item.alt}
