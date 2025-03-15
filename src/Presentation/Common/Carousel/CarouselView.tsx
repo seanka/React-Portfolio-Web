@@ -111,8 +111,8 @@ export const CarouselView: React.FC<PropType> = (props) => {
     <section className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {images.map((index) => (
-            <Box className="embla__slide" key={index.alt}>
+          {images.map((index, number) => (
+            <Box className="embla__slide" key={number}>
               <div className="embla__parallax">
                 <div className="embla__parallax__layer">
                   <img

@@ -1,13 +1,13 @@
 import React from "react";
 import { Text } from "@chakra-ui/react";
 
-import { PortfolioCategoryItem } from "../../../../../Domain/Entities/Portfolio/PortfolioCategoryItem";
+import { PortfolioCategory } from "../../../../../Domain/Entities/Portfolio/PortfolioCategory";
 
 interface props {
-  category: PortfolioCategoryItem;
+  category: PortfolioCategory | undefined;
 }
 
-export const PortfolioCategory: React.FC<props> = (props) => {
+export const PortfolioCategoryView: React.FC<props> = (props) => {
   const { category } = props;
 
   return (
@@ -15,7 +15,7 @@ export const PortfolioCategory: React.FC<props> = (props) => {
       noOfLines={1}
       className="font-sfpro text-sm font-bold text-ellipsis text-white"
     >
-      {category.title}
+      {category?.title}
     </Text>
   );
 };
