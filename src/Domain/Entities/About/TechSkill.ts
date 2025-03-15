@@ -5,10 +5,11 @@ export interface TechSkills {
   category_data?: Record<string, TechSkillCategoryDataItem>;
 }
 
-interface TechSkillCategoryItem {
+export interface TechSkillCategoryItem {
   id?: string;
   title?: string;
   position?: number;
+  description?: string;
 }
 
 interface TechSkillCategoryDataItem {

@@ -1,15 +1,22 @@
 import { useState } from "react";
 
 const TechSkillViewModel = () => {
-  const [SelectedTab, SetSelectedTab] = useState<number>(0);
+  const [IsCategoryExpanded, setIsCategoryExpanded] = useState<
+    { id: string; state: boolean }[]
+  >([]);
 
-  function handleSelectedTab(props: number) {
-    SetSelectedTab(props);
+  function handleCategoryExpand(props: string) {
+    setIsCategoryExpanded((state) =>
+      state.map((item) =>
+        item.id === props ? { ...item, state: !item.state } : item,
+      ),
+    );
   }
 
   return {
-    SelectedTab,
-    handleSelectedTab,
+    IsCategoryExpanded,
+    setIsCategoryExpanded,
+    handleCategoryExpand,
   };
 };
 
