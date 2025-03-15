@@ -12,15 +12,9 @@ interface props {
 export const CertificationEducationCard: React.FC<props> = (props) => {
   const { data } = props;
 
-  const certificationData = Array.isArray(data.data)
-    ? data.data.map((item) => ({
-        ...item,
-        issued: item.issued ?? new Date().toISOString().slice(0, 7),
-      }))
-    : [];
-
-  const sortedCertificationData =
-    ArrayExtension.sortByIssuedDate(certificationData);
+  const sortedCertificationData = ArrayExtension.sortByIssuedDate(
+    data.data ?? [],
+  );
 
   return (
     <Box className="mt-1 mb-3 flex flex-col">

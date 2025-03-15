@@ -12,12 +12,12 @@ const ArrayExtension = {
     return array.sort((a, b) => a.position - b.position);
   },
 
-  sortByIssuedDate: <T extends { issued: string }>(array: T[]): T[] => {
-    return array.sort(
-      (a, b) =>
-        new Date(b.issued + "-01").getTime() -
-        new Date(a.issued + "-01").getTime(),
-    );
+  sortByIssuedDate: <T extends { issued?: string }>(array: T[]): T[] => {
+    return array.sort((a, b) => {
+      const dateA = a.issued ? new Date(a.issued + "-01").getTime() : 0;
+      const dateB = b.issued ? new Date(b.issued + "-01").getTime() : 0;
+      return dateB - dateA;
+    });
   },
 
   sortByCreatedDate: <T extends { created?: string }>(array: T[]): T[] => {
