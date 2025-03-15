@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 
 import { Box, Text } from "@chakra-ui/react";
 
-import { PortfolioItem } from "./Component/PortfolioItem";
-import { PortfolioCategory } from "./Component/PortfolioCategory";
+import { PortfolioItemView } from "./Component/PortfolioItemView";
+import { PortfolioCategoryView } from "./Component/PortfolioCategoryView";
 import { SpinnerLoader } from "../../../Common/SpinnerLoader/SpinnerLoader";
 
 import PortfolioViewModel from "../ViewModel/PortfolioViewModel";
 
 import Navigation from "../../../../Common/Core/Utils/Navigation";
+import ArrayExtension from "../../../../Common/Core/Utils/ArrayExtension";
 
 export const PortfolioViewController: React.FC = () => {
   const portfolioVM = PortfolioViewModel();
@@ -64,6 +65,8 @@ export const PortfolioViewController: React.FC = () => {
     });
   }, [ActivePortfolioCategory]);
 
+  const sortedPortfolioList = ArrayExtension.sortByCreatedDate(PortfolioList);
+
   return (
     <Box className="flex h-screen flex-row">
       {/* Category List Tab */}
@@ -77,7 +80,7 @@ export const PortfolioViewController: React.FC = () => {
         {/* Category List Cards */}
         {PortfolioCategoryList?.map((item) => (
           <Box
-            key={item.id}
+            key={item.data?.position}
             className="my-2 mr-2 ml-2.5 rounded-lg px-6 py-4"
             backgroundColor={
               urlParam["category"] === item.id ? "#AF8E25" : "transparent"
@@ -88,7 +91,7 @@ export const PortfolioViewController: React.FC = () => {
                 : null
             }
           >
-            <PortfolioCategory key={item.id} category={item} />
+            <PortfolioCategoryView key={item.id} category={item.data} />
           </Box>
         ))}
       </Box>
@@ -96,7 +99,7 @@ export const PortfolioViewController: React.FC = () => {
       {/* Portfolio Content */}
       <Box className="flex h-full w-full flex-col overflow-y-scroll bg-[#1E1E1E] px-6 pt-8">
         <Text className="font-sfpro text-xl font-extrabold text-white">
-          {ActivePortfolioCategory.title}
+          {ActivePortfolioCategory.data?.title}
         </Text>
 
         {/* Loader */}
@@ -108,9 +111,9 @@ export const PortfolioViewController: React.FC = () => {
 
         {!IsLoadPortfolioList && (
           <Box className="mt-2">
-            {PortfolioList.length > 0 &&
-              PortfolioList.map((item) => (
-                <PortfolioItem key={item.title} item={item} />
+            {sortedPortfolioList.length > 0 &&
+              sortedPortfolioList.map((item) => (
+                <PortfolioItemView key={item.title} item={item} />
               ))}
           </Box>
         )}

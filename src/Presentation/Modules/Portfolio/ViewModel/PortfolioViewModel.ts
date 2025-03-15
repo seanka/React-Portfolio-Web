@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 import { Portfolio } from "../../../../Domain/Entities/Portfolio/Portfolio";
-import { PortfolioCategoryItem } from "../../../../Domain/Entities/Portfolio/PortfolioCategoryItem";
+import { BaseResponse } from "../../../../Domain/Entities/Core/BaseResponse";
+import { PortfolioCategory } from "../../../../Domain/Entities/Portfolio/PortfolioCategory";
 
 import PortfolioDataSource from "../../../../Data/Remotes/PortolioDataSource";
 
@@ -12,10 +13,11 @@ const PortfolioViewModel = () => {
     useState<boolean>(false);
   const [PortfolioList, setPortfolioList] = useState<Portfolio[]>([]);
   const [PortfolioCategoryList, setPortfolioCategoryList] = useState<
-    PortfolioCategoryItem[]
+    BaseResponse<PortfolioCategory>[]
   >([]);
-  const [ActivePortfolioCategory, setActivePortfolioCategory] =
-    useState<PortfolioCategoryItem>({});
+  const [ActivePortfolioCategory, setActivePortfolioCategory] = useState<
+    BaseResponse<PortfolioCategory>
+  >({});
 
   function updateActivePortfolioCategoryBasedOnParam(urlParam: string) {
     const activeObject = PortfolioCategoryList.find(

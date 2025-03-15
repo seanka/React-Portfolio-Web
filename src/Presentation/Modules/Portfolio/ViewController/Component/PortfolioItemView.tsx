@@ -18,7 +18,7 @@ interface props {
 
 const CAROUSEL_OPTIONS = { dragFree: false, loop: true };
 
-export const PortfolioItem: React.FC<props> = (props) => {
+export const PortfolioItemView: React.FC<props> = (props) => {
   const { item } = props;
 
   const portfolioItemVM = PortfolioItemViewModel({
@@ -98,7 +98,7 @@ export const PortfolioItem: React.FC<props> = (props) => {
               return (
                 <CarouselThumb
                   image={image}
-                  key={image?.alt}
+                  key={index}
                   selected={index === SelectedCarouselIndex}
                   onClickExpand={() => {
                     updateOpenFullScreenImage(image?.image ?? "");

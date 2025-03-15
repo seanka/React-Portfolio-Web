@@ -2,9 +2,9 @@ import { ImageProperty } from "../../../Common/Interface/ImageProperty";
 
 export interface Portfolio {
   title?: string;
-  field?: string;
+  created?: string;
   briefDesc?: string;
   description?: string;
+  isPublished?: boolean;
   images?: ImageProperty[];
-  framework?: ImageProperty[];
 }
