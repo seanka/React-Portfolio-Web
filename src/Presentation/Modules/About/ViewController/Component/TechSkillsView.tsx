@@ -47,7 +47,7 @@ export const TechSkillsView: React.FC<props> = (props) => {
             <Box key={item.title} className="flex flex-col">
               {/* Title Section */}
               <Box
-                className="flex flex-row items-center justify-between px-2 py-2 md:px-3"
+                className="flex flex-row items-center justify-between px-2 py-3 md:px-3 md:py-2"
                 onClick={() => handleCategoryExpand(item.id ?? "")}
               >
                 <Text className="font-sfpro text-base font-bold text-white">
@@ -59,7 +59,7 @@ export const TechSkillsView: React.FC<props> = (props) => {
                   <Text className="font-sfpro max-w-72 pr-5 text-right text-sm font-medium text-white md:max-w-fit">
                     {item.description}
                   </Text>
-                  <Text className="font-sfpro text-2xl font-bold text-[#AF8E25] md:text-lg">
+                  <Text className="font-sfpro text-4xl font-bold text-[#AF8E25]">
                     {isItemExpanded ? "-" : "+"}
                   </Text>
                 </Box>
