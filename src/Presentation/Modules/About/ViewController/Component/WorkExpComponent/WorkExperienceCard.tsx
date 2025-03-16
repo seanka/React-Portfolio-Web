@@ -16,7 +16,11 @@ export const WorkExperienceCard: React.FC<props> = (props) => {
     <Box
       border="1px"
       borderColor="#AF8E25"
-      className="mx-5 max-w-xl min-w-52 rounded-xl px-6 py-3 md:max-w-72 md:px-8 md:py-5"
+      className={`my-2.5 mr-4 ml-0.5 max-w-xl min-w-52 rounded-xl px-6 py-3 md:max-w-72 md:px-8 md:py-5 ${
+        data.duration?.toLowerCase().includes("present")
+          ? "shadow-[0_0_14px_4px_rgba(175,142,37,0.5)]"
+          : ""
+      }`}
     >
       {/* Card Header Items */}
       <Text className="font-sfpro text-sm font-semibold text-white">

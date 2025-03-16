@@ -22,7 +22,7 @@ export const WorkExperienceView: React.FC<props> = (props) => {
       {!workExperienceData && <Text>Loading ...</Text>}
 
       {workExperienceData && (
-        <Box className="mx-3 my-2 flex flex-row overflow-x-scroll">
+        <Box className="mx-3 flex flex-row overflow-x-scroll px-2.5">
           {sortedWorkExp.map((item) => (
             <WorkExperienceCard key={item.organization} data={item} />
           ))}
