@@ -14,11 +14,7 @@ export const AboutViewController: React.FC = () => {
   }, []);
 
   return (
-    <Box className="h-screen px-6 py-8">
-      <Text className="font-sfpro text-xl font-extrabold text-white">
-        Get to know to me
-      </Text>
-
+    <Box className="h-screen px-6 py-4">
       {AboutSections.map((item) => (
         <AboutSectionView key={item.id} section={item} aboutVM={aboutVM} />
       ))}
