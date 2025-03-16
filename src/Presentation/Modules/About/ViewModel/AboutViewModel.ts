@@ -27,13 +27,14 @@ const AboutViewModel = () => {
   const [IsLoading, setIsLoading] = useState<boolean>(false);
 
   async function requestAboutSections() {
+    setIsLoading(true);
     const response = await ds.requestAboutSection();
 
     setAboutSections(response);
+    setIsLoading(false);
   }
 
   async function requestAboutData(section: AboutSectionsEnum) {
-    // setIsLoading(true);
     const response = await ds.requestAboutData(section);
 
     if (section === AboutSectionsEnum.TECHNICAL_SKILLS) {
