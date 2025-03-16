@@ -8,8 +8,12 @@ const ArrayExtension = {
     return shuffled;
   },
 
-  SortArrayByPosition: <T extends { position: number }>(array: T[]): T[] => {
-    return array.sort((a, b) => a.position - b.position);
+  SortArrayByPosition: <T extends { position?: number }>(array: T[]): T[] => {
+    return array.sort((a, b) => {
+      const posA = a.position ? a.position : 99;
+      const posB = b.position ? b.position : 98;
+      return posA - posB;
+    });
   },
 
   sortByIssuedDate: <T extends { issued?: string }>(array: T[]): T[] => {
