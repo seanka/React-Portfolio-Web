@@ -1,27 +1,32 @@
 import React, { useEffect } from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import AboutViewModel from "../ViewModel/AboutViewModel";
 
 import { AboutSectionView } from "./Component/AboutSectionView";
 
+import { SpinnerLoader } from "../../../Common/SpinnerLoader/SpinnerLoader";
+
 export const AboutViewController: React.FC = () => {
   const aboutVM = AboutViewModel();
-  const { AboutSections, requestAboutSections } = aboutVM;
+  const { IsLoading, AboutSections, requestAboutSections } = aboutVM;
 
   useEffect(() => {
     requestAboutSections();
   }, []);
 
   return (
-    <Box className="h-screen px-6 py-8">
-      <Text className="font-sfpro text-xl font-extrabold text-white">
-        Get to know to me
-      </Text>
+    <Box className="h-screen px-6 py-4">
+      {IsLoading && (
+        <Box className="flex h-full items-center justify-center">
+          <SpinnerLoader />
+        </Box>
+      )}
 
-      {AboutSections.map((item) => (
-        <AboutSectionView key={item.id} section={item} aboutVM={aboutVM} />
-      ))}
+      {!IsLoading &&
+        AboutSections.map((item) => (
+          <AboutSectionView key={item.id} section={item} aboutVM={aboutVM} />
+        ))}
     </Box>
   );
 };
