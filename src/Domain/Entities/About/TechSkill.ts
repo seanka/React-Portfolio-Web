@@ -12,6 +12,6 @@ export interface TechSkillCategoryItem {
   description?: string;
 }
 
-interface TechSkillCategoryDataItem {
+export interface TechSkillCategoryDataItem {
   icons?: ImageProperty[];
 }
