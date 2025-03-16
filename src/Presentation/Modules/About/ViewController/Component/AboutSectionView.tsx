@@ -5,10 +5,11 @@ import { Box, Text } from "@chakra-ui/react";
 import { AboutSection } from "../../../../../Domain/Entities/About/AboutSection";
 import { AboutSectionsEnum } from "../../../../../Common/Enum/About/AboutSectionsEnum";
 
+import { EducationView } from "./EducationView";
 import { TechSkillsView } from "./TechSkillsView";
+import { WorkExperienceView } from "./WorkExperienceView";
 
 import AboutViewModel from "../../ViewModel/AboutViewModel";
-import { EducationView } from "./EducationView";
 
 interface props {
   section: AboutSection;
@@ -17,7 +18,12 @@ interface props {
 
 export const AboutSectionView: React.FC<props> = (props) => {
   const { section, aboutVM } = props;
-  const { requestAboutData, EducationSection, TechSkillsSection } = aboutVM;
+  const {
+    requestAboutData,
+    EducationSection,
+    TechSkillsSection,
+    WorkExperienceSection,
+  } = aboutVM;
 
   useEffect(() => {
     if (!section.id) {
@@ -49,6 +55,9 @@ export const AboutSectionView: React.FC<props> = (props) => {
       )}
       {section.id === AboutSectionsEnum.EDUCATION && (
         <EducationView educationData={EducationSection.data} />
+      )}
+      {section.id === AboutSectionsEnum.WORK_EXPERIENCE && (
+        <WorkExperienceView workExperienceData={WorkExperienceSection.data} />
       )}
     </Box>
   );

@@ -11,7 +11,7 @@ export const FormalEducationCard: React.FC<props> = (props) => {
   const { data } = props;
 
   return (
-    <Box className="mt-1 mb-4 flex flex-col">
+    <Box className="mx-0.5 mt-1 mb-4 flex flex-col">
       {/* Title Section */}
       <Box className="flex flex-row items-end">
         <Image
@@ -39,7 +39,10 @@ export const FormalEducationCard: React.FC<props> = (props) => {
       </Text>
 
       {data.descriptions?.map((item, index) => (
-        <Text key={index} className="font-sfpro py-0.5 text-sm text-white">
+        <Text
+          key={index}
+          className="font-sfpro px-2 py-0.5 text-justify text-sm text-white"
+        >
           ⏺ {item}
         </Text>
       ))}

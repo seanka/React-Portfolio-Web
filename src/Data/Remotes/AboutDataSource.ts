@@ -8,6 +8,7 @@ import { BaseResponse } from "../../Domain/Entities/Core/BaseResponse";
 
 import { Education } from "../../Domain/Entities/About/Education";
 import { TechSkills } from "../../Domain/Entities/About/TechSkill";
+import { WorkExperience } from "../../Domain/Entities/About/WorkExperience";
 import { AboutSectionsEnum } from "../../Common/Enum/About/AboutSectionsEnum";
 
 export default class AboutDataSource implements AboutRepository {
@@ -43,7 +44,12 @@ export default class AboutDataSource implements AboutRepository {
     } else if (document === AboutSectionsEnum.EDUCATION) {
       response.data = aboutData?.data() as Education;
     } else if (document === AboutSectionsEnum.WORK_EXPERIENCE) {
-      // response.data = aboutData?.data() as TechSkills;
+      const workExp: WorkExperience[] = [];
+      Object.entries(
+        aboutData?.data() as Record<string, WorkExperience>,
+      ).forEach(([_, data]) => workExp.push(data as WorkExperience));
+
+      response.data = workExp;
     }
 
     return response;

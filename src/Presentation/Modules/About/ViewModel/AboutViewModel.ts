@@ -8,6 +8,7 @@ import { AboutSectionsEnum } from "../../../../Common/Enum/About/AboutSectionsEn
 import { Education } from "../../../../Domain/Entities/About/Education";
 import { TechSkills } from "../../../../Domain/Entities/About/TechSkill";
 import { BaseResponse } from "../../../../Domain/Entities/Core/BaseResponse";
+import { WorkExperience } from "../../../../Domain/Entities/About/WorkExperience";
 
 const AboutViewModel = () => {
   const ds = new AboutDataSource();
@@ -18,6 +19,9 @@ const AboutViewModel = () => {
   >({});
   const [EducationSection, setEducationSection] = useState<
     BaseResponse<Education>
+  >({});
+  const [WorkExperienceSection, setWorkExperienceSection] = useState<
+    BaseResponse<WorkExperience[]>
   >({});
 
   const [IsLoading, setIsLoading] = useState<boolean>(false);
@@ -36,6 +40,8 @@ const AboutViewModel = () => {
       setTechSkillsSection(response);
     } else if (section === AboutSectionsEnum.EDUCATION) {
       setEducationSection(response);
+    } else if (section === AboutSectionsEnum.WORK_EXPERIENCE) {
+      setWorkExperienceSection(response);
     }
   }
 
@@ -44,6 +50,7 @@ const AboutViewModel = () => {
     AboutSections,
     EducationSection,
     TechSkillsSection,
+    WorkExperienceSection,
     requestAboutData,
     requestAboutSections,
   };

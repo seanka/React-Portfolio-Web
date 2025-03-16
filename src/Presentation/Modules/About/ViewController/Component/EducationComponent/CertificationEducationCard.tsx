@@ -17,7 +17,7 @@ export const CertificationEducationCard: React.FC<props> = (props) => {
   );
 
   return (
-    <Box className="mt-1 mb-3 flex flex-col">
+    <Box className="mx-0.5 mt-1 mb-3 flex flex-col">
       {/* Title Section */}
       <Box className="mb-1 flex flex-row items-end">
         <Image
