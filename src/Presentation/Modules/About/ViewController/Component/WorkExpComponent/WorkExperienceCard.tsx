@@ -60,8 +60,8 @@ export const WorkExperienceCard: React.FC<props> = (props) => {
         <Box>
           {!IsExpanded && (
             <Text
-              className="font-sfpro pt-2 text-xs font-bold text-white"
               onClick={() => setIsExpanded(!IsExpanded)}
+              className="font-sfpro pt-2 text-xs font-bold text-white hover:cursor-pointer"
             >
               🔽 see more
             </Text>
@@ -96,8 +96,8 @@ export const WorkExperienceCard: React.FC<props> = (props) => {
               })}
 
               <Text
-                className="font-sfpro pt-2 text-xs font-bold text-white"
                 onClick={() => setIsExpanded(!IsExpanded)}
+                className="font-sfpro pt-2 text-xs font-bold text-white hover:cursor-pointer"
               >
                 🔼 see less
               </Text>
