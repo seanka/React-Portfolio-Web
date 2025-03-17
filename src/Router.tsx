@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 
+import NavigationPath from "./Common/Core/NavigationPath";
+
 import { RootViewController } from "./Presentation/Modules/Core/Root/ViewController/RootViewController";
 import { HomeViewController } from "./Presentation/Modules/Home/ViewController/HomeViewController";
 import { AboutViewController } from "./Presentation/Modules/About/ViewController/AboutViewController";
 import { PortfolioViewController } from "./Presentation/Modules/Portfolio/ViewController/PortfolioViewController";
-import NavigationPath from "./Common/Core/NavigationPath";
+import { ContactViewController } from "./Presentation/Modules/Contact/ViewController/ContactViewController";
 
 const Router = createBrowserRouter(
   [
@@ -26,7 +28,7 @@ const Router = createBrowserRouter(
         },
         {
           path: NavigationPath.contact.path,
-          element: <PortfolioViewController />,
+          element: <ContactViewController />,
         },
       ],
     },
