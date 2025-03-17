@@ -81,7 +81,7 @@ export const PortfolioViewController: React.FC = () => {
         {PortfolioCategoryList?.map((item) => (
           <Box
             key={item.data?.position}
-            className="my-2 mr-2 ml-2.5 rounded-lg px-6 py-4"
+            className="my-2 mr-2 ml-2.5 rounded-lg px-6 py-4 hover:cursor-pointer"
             backgroundColor={
               urlParam["category"] === item.id ? "#AF8E25" : "transparent"
             }

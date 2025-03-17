@@ -35,7 +35,7 @@ export const CertificationEducationCard: React.FC<props> = (props) => {
         <Text
           key={item.issued}
           onClick={() => window.open(item.credential ?? "", "_blank")}
-          className="font-sfpro mt-1 mb-0.5 pb-0.5 text-sm font-semibold text-white hover:text-[#AF8E25]"
+          className="font-sfpro mt-1 mb-0.5 pb-0.5 text-sm font-semibold text-white hover:cursor-pointer hover:text-[#AF8E25]"
         >
           ⏺&nbsp;&nbsp;&nbsp;{item.title}
         </Text>

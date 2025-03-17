@@ -23,8 +23,8 @@ export const TechSkillViewCard: React.FC<props> = (props) => {
     <Box key={data.title} className="flex flex-col">
       {/* Title Section */}
       <Box
-        className="flex flex-row items-center justify-between px-2 py-3 md:px-3 md:py-2"
         onClick={() => setIsExpanded(!IsExpanded)}
+        className="flex flex-row items-center justify-between px-2 py-3 hover:cursor-pointer md:px-3 md:py-2"
       >
         <Text className="font-sfpro text-base font-bold text-white">
           {data.title}

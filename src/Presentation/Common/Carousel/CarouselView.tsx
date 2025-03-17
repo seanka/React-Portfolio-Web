@@ -125,7 +125,7 @@ export const CarouselView: React.FC<PropType> = (props) => {
 
               {/* Hover Overlay */}
               <Box
-                className="absolute top-0 left-0 flex h-full w-full items-center justify-center rounded-3xl bg-[#00000080] opacity-0"
+                className="absolute top-0 left-0 flex h-full w-full items-center justify-center rounded-3xl bg-[#00000080] opacity-0 hover:cursor-pointer"
                 _hover={{ opacity: 1 }}
                 onClick={() => onClickExpandImage(index.image)}
                 transition="opacity 0.3s ease-in-out"

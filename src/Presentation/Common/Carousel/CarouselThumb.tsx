@@ -16,8 +16,8 @@ export const CarouselThumb: React.FC<PropType> = (props) => {
 
   return (
     <Box
+      className="w-14 px-1 hover:cursor-pointer"
       onClick={selected ? onClickExpand : onClickUpdateSelected}
-      className="w-14 px-1"
     >
       <Box
         className={`rounded-md ${selected ? "bg-transparent" : "bg-black opacity-50"}`}

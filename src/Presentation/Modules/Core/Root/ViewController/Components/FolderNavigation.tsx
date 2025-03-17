@@ -19,7 +19,7 @@ export const FolderNavigation: React.FC<props> = (props) => {
 
   return (
     <Box
-      className="mr-2 flex flex-row items-center rounded-sm px-3 py-1"
+      className="mr-2 flex flex-row items-center rounded-sm px-3 py-1 hover:cursor-pointer"
       backgroundColor={isActiveRoute ? "#AF8E25" : ""}
       onClick={() => navigateToPath({ path: navItem.path })}
     >
