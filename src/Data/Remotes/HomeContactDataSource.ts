@@ -3,6 +3,7 @@ import { BaseRemote } from "./Base/BaseRemote";
 import { Collection } from "../../Common/Enum/Collection";
 
 import { Home } from "../../Domain/Entities/Home/Home";
+import { Contact } from "../../Domain/Entities/Contact/Contact";
 import { BaseResponse } from "../../Domain/Entities/Core/BaseResponse";
 
 import { HomeContactRepository } from "../../Domain/Repositories/HomeContactRepository";
@@ -25,7 +26,7 @@ export default class HomeContactDataSource implements HomeContactRepository {
     if (document === HomeContactSectionEnum.HOME) {
       response.data = homeContactData?.data() as Home;
     } else if (document === HomeContactSectionEnum.CONTACT) {
-      response.data = homeContactData?.data();
+      response.data = homeContactData?.data() as Contact;
     }
 
     return response;
