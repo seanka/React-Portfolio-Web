@@ -1,4 +1,5 @@
 export interface Home {
+  image?: string
   location?: string;
   headline?: string;
   greetingMessage?: string;

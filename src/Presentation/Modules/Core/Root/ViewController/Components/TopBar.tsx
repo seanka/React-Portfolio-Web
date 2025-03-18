@@ -13,7 +13,7 @@ export const TopBar: React.FC<props> = (props) => {
   const { handleOnClickExtendButton } = props;
 
   return (
-    <Box className="flex w-screen flex-row items-center bg-[#2E2E2E] px-2.5 py-3">
+    <Box className="fixed top-0 left-0 z-50 flex w-screen flex-row items-center bg-[#2E2E2E] px-2.5 py-3">
       <WindowButtons />
 
       <Image

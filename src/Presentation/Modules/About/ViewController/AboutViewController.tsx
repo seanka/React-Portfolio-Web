@@ -16,7 +16,7 @@ export const AboutViewController: React.FC = () => {
   }, []);
 
   return (
-    <Box className="h-screen px-6 py-4">
+    <Box className="px-6 h-full  py-4">
       {IsLoading && (
         <Box className="flex h-full items-center justify-center">
           <SpinnerLoader />
