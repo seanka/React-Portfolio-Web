@@ -66,7 +66,7 @@ export const EducationView: React.FC<props> = (props) => {
             </TabList>
 
             {/* Tab Indicator */}
-            <TabIndicator className="mt-[-30px] h-0.5 w-2.5 bg-[#AF8E25]" />
+            <TabIndicator className="mt-[-48px] h-0.5 w-2.5 bg-[#AF8E25] md:mt-[-30px]" />
 
             {/* Tab Panels */}
             <TabPanels>

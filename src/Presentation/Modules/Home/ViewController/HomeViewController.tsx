@@ -58,7 +58,7 @@ export const HomeViewController: React.FC = () => {
         <Box className="order-1 mb-3 md:order-none md:mb-0">
           <Image
             src="https://images.squarespace-cdn.com/content/v1/5ad96a1b2714e5e5c97d4436/1706711682673-6MZ2T6CNJOICL60HLSL7/Headshot-Portrait-Mann-München-5.jpg?format=1000w"
-            className="w-[300px] md:w-[400px]"
+            className="w-[280px] md:w-[400px]"
           />
         </Box>
 
