@@ -27,7 +27,7 @@ export const PersonalSectionView: React.FC<props> = (props) => {
         <Text className="font-sfpro text-center text-xs font-semibold text-white md:text-left md:text-sm">
           {data.title}
         </Text>
-        <Text className="font-sfpro text-right text-2xl font-bold text-white md:text-4xl">
+        <Text className="font-sfpro text-center text-2xl font-bold text-white md:text-left md:text-4xl">
           {data.value}
         </Text>
       </Box>

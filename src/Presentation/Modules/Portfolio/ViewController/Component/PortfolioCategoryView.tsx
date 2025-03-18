@@ -13,7 +13,7 @@ export const PortfolioCategoryView: React.FC<props> = (props) => {
   return (
     <Text
       noOfLines={1}
-      className="font-sfpro text-sm font-bold text-ellipsis text-white"
+      className="font-sfpro text-xs font-bold text-ellipsis text-white md:text-sm"
     >
       {category?.title}
     </Text>

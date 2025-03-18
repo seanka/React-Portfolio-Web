@@ -25,7 +25,7 @@ export const CountSectionView: React.FC<props> = (props) => {
         <Text className="font-sfpro order-2 text-center text-2xl font-bold text-white md:order-none md:text-right md:text-4xl">
           {data.value}
         </Text>
-        <Text className="font-sfpro order-1 text-xs font-semibold text-white md:order-none md:text-sm">
+        <Text className="font-sfpro order-1 text-center text-xs font-semibold text-white md:order-none md:text-sm">
           {data.title}
         </Text>
       </Box>
