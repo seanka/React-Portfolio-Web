@@ -22,7 +22,7 @@ jobs:
 
       - name: Create Config
         run: |
-          cat <<EOF > src/FirebaseConfig.ts
+          cat <<EOF > src/Data/Remotes/Base/FirebaseConfig.ts
           export const FirebaseConfig = {
             apiKey: "${{ secrets.FIREBASE_API_KEY }}",
             authDomain: "${{ secrets.FIREBASE_AUTH_DOMAIN }}",
