@@ -68,9 +68,9 @@ export const PortfolioViewController: React.FC = () => {
   const sortedPortfolioList = ArrayExtension.sortByCreatedDate(PortfolioList);
 
   return (
-    <Box className="flex h-screen flex-row">
+    <Box className="h-full flex  flex-row">
       {/* Category List Tab */}
-      <Box className="h-screen w-[30%] bg-[#222222] md:w-[25%] lg:w-[20%]">
+      <Box className="w-[30%] bg-[#222222] md:w-[25%] lg:w-[20%]">
         <Text className="font-sfpro py-2 pl-4 text-xs text-[#939393]">
           Category List
         </Text>

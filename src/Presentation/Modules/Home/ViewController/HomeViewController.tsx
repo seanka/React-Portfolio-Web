@@ -16,7 +16,7 @@ export const HomeViewController: React.FC = () => {
   }, []);
 
   return (
-    <Box className="flex h-screen flex-col items-center justify-between px-6 py-4">
+    <Box className="flex h-full flex-col items-center justify-between px-6 py-4">
       {IsLoading && (
         <Box className="flex h-full items-center justify-center">
           <SpinnerLoader />
@@ -57,7 +57,7 @@ export const HomeViewController: React.FC = () => {
         {/* Image */}
         <Box className="order-1 mb-3 md:order-none md:mb-0">
           <Image
-            src="https://images.squarespace-cdn.com/content/v1/5ad96a1b2714e5e5c97d4436/1706711682673-6MZ2T6CNJOICL60HLSL7/Headshot-Portrait-Mann-München-5.jpg?format=1000w"
+            src={HomeData.data?.image}
             className="w-[280px] md:w-[400px]"
           />
         </Box>
