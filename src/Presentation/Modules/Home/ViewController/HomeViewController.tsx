@@ -16,7 +16,7 @@ export const HomeViewController: React.FC = () => {
   }, []);
 
   return (
-    <Box className="flex h-full flex-col items-center justify-between px-6 py-4">
+    <Box className="flex h-full flex-col items-center justify-between px-6 pt-4">
       {IsLoading && (
         <Box className="flex h-full items-center justify-center">
           <SpinnerLoader />
