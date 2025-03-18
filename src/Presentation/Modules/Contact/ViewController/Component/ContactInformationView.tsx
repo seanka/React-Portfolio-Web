@@ -17,7 +17,7 @@ export const ContactInformationView: React.FC<props> = (props) => {
     >
       <Image src={data.icon} className="mr-2 mb-1 w-7" />
 
-      <Text className="font-sfpro text-sm font-semibold text-white">
+      <Text className="font-sfpro text-xs font-semibold text-white md:text-sm">
         {data.value}
       </Text>
     </Box>

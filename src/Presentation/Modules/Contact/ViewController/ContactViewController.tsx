@@ -51,28 +51,28 @@ for visit      Cards
           </Box>
 
           {/* Lets Connect Container */}
-          <Box className="mt-40 flex flex-col items-end md:mt-0 md:w-[36%]">
+          <Box className="mt-40 flex flex-col items-end px-2 md:mt-0 md:w-[36%]">
             <Box className="flex w-full flex-row items-center justify-start md:justify-end">
               <Box className="order-2 ml-2 flex flex-col items-start md:order-1 md:mr-2 md:ml-0 md:items-end">
                 {/* Rich Text */}
                 <Box className="flex flex-row">
-                  <Text className="font-sfpro text-4xl font-bold text-white md:text-5xl">
+                  <Text className="font-sfpro text-3xl font-bold text-white md:text-5xl">
                     Let's&nbsp;
                   </Text>
-                  <Text className="font-sfpro text-4xl font-bold text-[#AF8E25] md:text-5xl">
+                  <Text className="font-sfpro text-3xl font-bold text-[#AF8E25] md:text-5xl">
                     Connect&nbsp;
                   </Text>
-                  <Text className="font-sfpro text-4xl font-bold text-white md:text-5xl">
+                  <Text className="font-sfpro text-3xl font-bold text-white md:text-5xl">
                     and
                   </Text>
                 </Box>
 
                 {/* Rich Text */}
                 <Box className="flex flex-row">
-                  <Text className="font-sfpro text-4xl font-bold text-white md:text-5xl">
+                  <Text className="font-sfpro text-3xl font-bold text-white md:text-5xl">
                     Have a&nbsp;
                   </Text>
-                  <Text className="font-sfpro text-4xl font-bold text-[#AF8E25] md:text-5xl">
+                  <Text className="font-sfpro text-3xl font-bold text-[#AF8E25] md:text-5xl">
                     Chat
                   </Text>
                 </Box>
@@ -84,7 +84,7 @@ for visit      Cards
             </Box>
 
             {/* Content */}
-            <Box className="grid w-full grid-cols-3 gap-4 py-5">
+            <Box className="grid w-full grid-cols-2 gap-4 py-5 md:grid-cols-3">
               {ContactData?.data?.socialMedia?.map((item) => (
                 <SocialMediaView key={item.platform} data={item} />
               ))}
