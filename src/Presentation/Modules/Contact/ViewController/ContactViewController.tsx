@@ -16,7 +16,7 @@ export const ContactViewController: React.FC = () => {
   }, []);
 
   return (
-    <Box className="h-screen px-3 py-2 md:px-10">
+    <Box className="h-full px-3 py-2 md:px-10">
       {IsLoading && (
         <Box className="flex h-full items-center justify-center">
           <SpinnerLoader />
