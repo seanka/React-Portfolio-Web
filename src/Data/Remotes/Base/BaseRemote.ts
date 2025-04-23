@@ -1,16 +1,16 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import {
   Firestore,
   collection,
   getDocs,
-  getFirestore,
+  initializeFirestore,
   orderBy,
+  persistentLocalCache,
   query,
   where,
 } from "firebase/firestore";
 
-import { AppCheckKey, FirebaseConfig } from "./FirebaseConfig";
-import { ReCaptchaV3Provider, initializeAppCheck } from "firebase/app-check";
+import { FirebaseConfig } from "./FirebaseConfig";
 
 import { RemoteCollectionRequest } from "../../../Domain/Entities/Core/RemoteCollectionRequest";
 
@@ -28,19 +28,18 @@ export function BaseRemote() {
         q = query(q, orderBy(order, sort));
       }
 
-      whereCondition?.forEach(
-        (condition) =>
-          (q = query(
-            q,
-            where(condition.field, condition.operator, condition.value),
-          )),
-      );
+      whereCondition?.forEach((condition) => {
+        q = query(
+          q,
+          where(condition.field, condition.operator, condition.value),
+        );
+      });
 
       const data = await getDocs(q);
-
       return data;
-    } catch (error) {
-      throw new Error(`Unexpected Error While Fetching Data ${error}`);
+    } catch (error: any) {
+      console.error("Firebase fetch error:", error);
+      throw new Error(`Unexpected Error While Fetching Data: ${error.message}`);
     }
   }
 
@@ -49,15 +48,20 @@ export function BaseRemote() {
   };
 }
 
-function firestore(): Firestore {
-  const app = initializeApp(FirebaseConfig);
+let firestoreInstance: Firestore | null = null;
 
-  initializeAppCheck(app, {
-    provider: new ReCaptchaV3Provider(AppCheckKey),
-    isTokenAutoRefreshEnabled: true,
+export function firestore(): Firestore {
+  if (firestoreInstance) return firestoreInstance;
+
+  if (!FirebaseConfig || typeof FirebaseConfig !== "object") {
+    throw new Error("FirebaseConfig is missing or invalid.");
+  }
+
+  const app = getApps().length === 0 ? initializeApp(FirebaseConfig) : getApp();
+
+  firestoreInstance = initializeFirestore(app, {
+    localCache: persistentLocalCache(),
   });
 
-  const fs = getFirestore(app);
-
-  return fs;
+  return firestoreInstance;
 }

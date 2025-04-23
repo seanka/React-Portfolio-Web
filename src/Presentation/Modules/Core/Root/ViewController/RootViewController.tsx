@@ -34,13 +34,13 @@ export const RootViewController: React.FC = () => {
       <Box className="w-screen bg-[#2E2E2E]">
         <TopBar handleOnClickExtendButton={() => rootVM.updateSideBarState()} />
 
-        <Box className="flex mt-[44px] flex-row ">
+        <Box className="mt-[44px] flex flex-row">
           {/*
             Sidebar component
             On small screen (default) it will take 100% width, only side bar with no outlet
             Larger than md: 20%, Larger than lg: 15%
           */}
-          <Box className=" w-full md:w-[20%] lg:w-[15%]">
+          <Box className="w-full md:w-[20%] lg:w-[15%]">
             <SideBar
               animation={`${sideBarState ? AnimationTransform.slide("-100%", "0%") : AnimationTransform.slide("0%", "-100%")} 0.5s ease-in-out  forwards`}
             />
@@ -52,7 +52,7 @@ export const RootViewController: React.FC = () => {
             Larger than md: located next to the sidebar with dynamic width and dynamic margin left
           */}
           <Box
-            className={`${sideBarState ? "absolute hidden      md:ml-[20%] md:w-[calc(100%-20%)] lg:ml-[15%] lg:w-[calc(100%-15%)]" : "w-full"} h-[calc(100%-44px)] overflow-y-scroll absolute bg-[#1E1E1E] md:block`}
+            className={`${sideBarState ? "absolute hidden md:ml-[20%] md:w-[calc(100%-20%)] lg:ml-[15%] lg:w-[calc(100%-15%)]" : "w-full"} absolute h-[calc(100%-44px)] overflow-y-scroll bg-[#1E1E1E] md:block`}
             animation={`${
               sideBarState
                 ? AnimationTransform.reshape(
