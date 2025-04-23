@@ -7,6 +7,8 @@ import { CountSectionView } from "./Component/CountSectionView";
 import { PersonalSectionView } from "./Component/PersonalSectionView";
 import { SpinnerLoader } from "../../../Common/SpinnerLoader/SpinnerLoader";
 
+import ArrayExtension from "../../../../Common/Core/Utils/ArrayExtension";
+
 export const HomeViewController: React.FC = () => {
   const homeVM = HomeViewModel();
   const { IsLoading, HomeData } = homeVM;
@@ -14,6 +16,14 @@ export const HomeViewController: React.FC = () => {
   useEffect(() => {
     homeVM.requestHomeData();
   }, []);
+
+  const sortedPersonalSection = ArrayExtension.SortArrayByPosition(
+    HomeData.data?.personalSection ?? [],
+  );
+
+  const sortedCountSection = ArrayExtension.SortArrayByPosition(
+    HomeData.data?.countSection ?? [],
+  );
 
   return (
     <Box className="flex h-full flex-col items-center justify-between px-6 pt-4">
@@ -49,7 +59,7 @@ export const HomeViewController: React.FC = () => {
       <Box className="flex w-full flex-col items-center justify-between md:flex-row md:items-end">
         {/* Personal Section */}
         <Box className="order-2 mb-3 flex h-[80%] w-full flex-row justify-evenly md:order-none md:mb-0 md:w-auto md:flex-col md:items-start">
-          {HomeData.data?.personalSection?.map((item) => (
+          {sortedPersonalSection.map((item) => (
             <PersonalSectionView key={item.title} data={item} />
           ))}
         </Box>
@@ -63,7 +73,7 @@ export const HomeViewController: React.FC = () => {
         </Box>
 
         <Box className="order-2 flex h-[80%] w-full flex-row justify-between md:order-none md:w-auto md:flex-col md:items-end md:justify-evenly">
-          {HomeData.data?.countSection?.map((item) => (
+          {sortedCountSection.map((item) => (
             <CountSectionView key={item.title} data={item} />
           ))}
         </Box>

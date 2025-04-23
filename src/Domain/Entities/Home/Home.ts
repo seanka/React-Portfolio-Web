@@ -1,5 +1,5 @@
 export interface Home {
-  image?: string
+  image?: string;
   location?: string;
   headline?: string;
   greetingMessage?: string;
@@ -8,7 +8,9 @@ export interface Home {
 }
 
 export interface DataSection {
+  icon?: string;
   value?: string;
   title?: string;
-  icon?: string;
+  action?: string;
+  position?: number;
 }
