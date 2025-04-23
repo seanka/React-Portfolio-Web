@@ -59,7 +59,7 @@ export const TechSkillViewCard: React.FC<props> = (props) => {
                 <Image
                   src={item.image}
                   alt={item.alt}
-                  className={`${item.isLarger ? "w-20" : "w-12"} rounded-lg bg-white`}
+                  className={item.isLarger ? "w-20" : "w-12"}
                 />
               </Tooltip>
             </Box>
