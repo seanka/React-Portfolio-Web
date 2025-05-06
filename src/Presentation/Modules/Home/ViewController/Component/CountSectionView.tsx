@@ -3,12 +3,16 @@ import { Box, Text } from "@chakra-ui/react";
 
 import { DataSection } from "../../../../../Domain/Entities/Home/Home";
 
+import Navigation from "../../../../../Common/Core/Utils/Navigation";
+
 interface props {
   data: DataSection;
 }
 
 export const CountSectionView: React.FC<props> = (props) => {
   const { data } = props;
+
+  const { navigateToPath } = Navigation();
 
   return (
     // In default screen (small) layout :
@@ -20,7 +24,10 @@ export const CountSectionView: React.FC<props> = (props) => {
     // icons1 - title
     // icons1 - value
 
-    <Box className="my-2 flex flex-col items-center justify-end md:flex-row">
+    <Box
+      className="my-2 flex cursor-pointer flex-col items-center justify-end md:flex-row"
+      onClick={() => navigateToPath({ path: `/${data.action?.toLowerCase()}` })}
+    >
       <Box className="order-2 justify-center md:order-none md:mr-4 md:flex-col md:justify-end">
         <Text className="font-sfpro order-2 text-center text-2xl font-bold text-white md:order-none md:text-right md:text-4xl">
           {data.value}

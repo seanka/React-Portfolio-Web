@@ -69,13 +69,30 @@ export const PortfolioItemView: React.FC<props> = (props) => {
           </Box>
         </FullScreenModalView>
       )}
+
       <Box className="mt-4 mb-8">
+        {/* Title */}
         <Text className="font-sfpro text-base font-extrabold text-white">
           {item.title}
         </Text>
 
+        {/* External Link Buttons */}
+        <Box className="flex w-full flex-row gap-x-1">
+          {item.externalLinks?.map((item, index) => (
+            <Box
+              key={index}
+              border="1px"
+              borderColor="#AF8E25"
+              onClick={() => window.open(item.url ?? "", "_blank")}
+              className="flex cursor-pointer items-center justify-center rounded-md p-1"
+            >
+              <Image className="w-7" src={item.icon} />
+            </Box>
+          ))}
+        </Box>
+
         {/* Carousel Component */}
-        <Box className="mt-2">
+        <Box className="mt-4">
           <CarouselView
             images={item.images ?? []}
             emblaCarouselType={emblaCarouselType}

@@ -7,4 +7,11 @@ export interface Portfolio {
   description?: string;
   isPublished?: boolean;
   images?: ImageProperty[];
+  externalLinks?: ExternalLink[];
+}
+
+interface ExternalLink {
+  url?: string;
+  icon?: string;
+  title?: string;
 }
