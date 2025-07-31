@@ -5,13 +5,13 @@ interface props {
   title: string | undefined;
 }
 
-export const PortfolioCategoryView: React.FC<props> = (props) => {
+export const PortfolioCategoryChildView: React.FC<props> = (props) => {
   const { title } = props;
 
   return (
     <Text
       noOfLines={1}
-      className="font-sfpro text-xs font-bold text-ellipsis text-white md:text-sm"
+      className="font-sfpro text-xs font-medium text-ellipsis text-white md:text-sm"
     >
       {title}
     </Text>

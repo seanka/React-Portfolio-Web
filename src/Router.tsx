@@ -23,7 +23,7 @@ const Router = createBrowserRouter(
           element: <AboutViewController />,
         },
         {
-          path: `${NavigationPath.projects.path}/:category?`,
+          path: `${NavigationPath.projects.path}/:category?/:item?`,
           element: <PortfolioViewController />,
         },
         {
