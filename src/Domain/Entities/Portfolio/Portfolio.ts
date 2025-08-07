@@ -1,13 +1,23 @@
 import { ImageProperty } from "../../../Common/Interface/ImageProperty";
 
-export interface Portfolio {
+export interface PortfolioV2 {
+  id?: string;
+  title?: string;
+  position?: number;
+  expanded?: boolean;
+  data?: PortfolioBriefData[];
+}
+
+interface PortfolioBriefData {
   title?: string;
   created?: string;
-  briefDesc?: string;
+  published?: boolean;
+}
+
+export interface Portfolio {
   description?: string;
-  isPublished?: boolean;
-  images?: ImageProperty[];
-  externalLinks?: ExternalLink[];
+  image?: ImageProperty[];
+  externalLink?: ExternalLink[];
 }
 
 interface ExternalLink {

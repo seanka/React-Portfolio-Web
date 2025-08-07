@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Image, Text } from "@chakra-ui/react";
 
 import { PortfolioItemView } from "./Component/PortfolioItemView";
 import { PortfolioCategoryView } from "./Component/PortfolioCategoryView";
@@ -9,97 +9,120 @@ import { SpinnerLoader } from "../../../Common/SpinnerLoader/SpinnerLoader";
 import PortfolioViewModel from "../ViewModel/PortfolioViewModel";
 
 import Navigation from "../../../../Common/Core/Utils/Navigation";
-import ArrayExtension from "../../../../Common/Core/Utils/ArrayExtension";
+import { PortfolioCategoryChildView } from "./Component/PortfolioCategoryChildView";
+import Images from "../../../../Common/Core/Images";
 
 export const PortfolioViewController: React.FC = () => {
   const portfolioVM = PortfolioViewModel();
   const {
-    PortfolioList,
+    Portfolio,
+    PortfolioData,
+    ActivePortfolio,
+    PrevActiveCategory,
     IsLoadPortfolioList,
-    requestPortfolioList,
-    PortfolioCategoryList,
-    ActivePortfolioCategory,
-    requestPortfolioCategory,
-    setActivePortfolioCategory,
-    updateActivePortfolioCategoryBasedOnParam,
+    PortfolioCategoryData,
+    updateExpanded,
+    setPortfolioData,
+    currentItemActive,
+    updateActivePortfolio,
+    requestPortfolioV2Data,
+    requestPortfolioCategoryV2,
   } = portfolioVM;
 
   const navigation = Navigation();
   const urlParam = navigation.getUrlParam();
 
   useEffect(() => {
-    requestPortfolioCategory();
+    requestPortfolioCategoryV2();
   }, []);
 
   useEffect(() => {
-    /*
-      Check whether the url param is empty
-      If not empty, set active category automatically
-      If not empty, set active category to first item automatically
-    */
-    if (Object.keys(urlParam).length !== 0) {
-      if (urlParam["category"] === "") {
-        return;
+    // On init :: Automatically set selected item to first
+
+    if (Object.keys(urlParam).length === 0 && Portfolio.length > 0) {
+      const firstItem = Portfolio[0];
+
+      if (firstItem && firstItem.id && firstItem.data) {
+        updateActivePortfolio(firstItem.id, firstItem.data.data![0].title);
       }
-
-      updateActivePortfolioCategoryBasedOnParam(urlParam["category"]!);
-      return;
     }
-
-    if (PortfolioCategoryList.length > 0) {
-      setActivePortfolioCategory(PortfolioCategoryList[0]);
-    }
-  }, [PortfolioCategoryList]);
+  }, [Portfolio]);
 
   useEffect(() => {
-    const activeCategory = ActivePortfolioCategory;
+    const { Category, Item } = ActivePortfolio;
 
-    if (Object.keys(activeCategory).length === 0) {
-      return;
+    if (!Category || !Item || IsLoadPortfolioList) return;
+
+    // Only refetch data when the category has changed
+    const updateCategory = PrevActiveCategory.current !== Category;
+    if (updateCategory) {
+      requestPortfolioV2Data();
+      PrevActiveCategory.current = Category;
     }
 
-    requestPortfolioList();
     navigation.navigateToPath({
-      path: `/portfolio/${activeCategory.id}`,
+      path: `/portfolio/${Category}/${Item}`,
       replace: true,
     });
-  }, [ActivePortfolioCategory]);
 
-  const sortedPortfolioList = ArrayExtension.sortByCreatedDate(PortfolioList);
+    // Find correct item
+    const matched = PortfolioCategoryData.current.find(
+      (data) => data.id === Item,
+    );
+    setPortfolioData(matched ?? {});
+  }, [ActivePortfolio, IsLoadPortfolioList]);
 
   return (
-    <Box className="h-full flex  flex-row">
+    <Box className="flex h-full flex-row">
       {/* Category List Tab */}
-      <Box className="w-[30%] bg-[#222222] md:w-[25%] lg:w-[20%]">
+      <Box className="w-[30%] overflow-y-scroll bg-[#222222] md:w-[25%] lg:w-[20%]">
         <Text className="font-sfpro py-2 pl-4 text-xs text-[#939393]">
-          Category List
+          Lists
         </Text>
 
-        <Box className="h-[1px] w-full bg-[#939393]" />
+        {/* Separator */}
+        <Box className="mb-2 h-[1px] w-full bg-[#939393]" />
 
-        {/* Category List Cards */}
-        {PortfolioCategoryList?.map((item) => (
-          <Box
-            key={item.data?.position}
-            className="my-2 mr-2 ml-2.5 rounded-lg px-4 py-4 hover:cursor-pointer md:px-6"
-            backgroundColor={
-              urlParam["category"] === item.id ? "#AF8E25" : "transparent"
-            }
-            onClick={() =>
-              urlParam["category"] !== item.id
-                ? setActivePortfolioCategory(item)
-                : null
-            }
-          >
-            <PortfolioCategoryView key={item.id} category={item.data} />
+        {Portfolio?.map((category) => (
+          <Box key={category.data?.position} className="my-1 px-3 py-2 md:px-4">
+            {/* Category Title */}
+            <Box className="flex flex-row items-center align-middle">
+              <Image
+                height="16px"
+                src={Images.ic_arrow_white}
+                onClick={() => updateExpanded(category)}
+                className={`transition-transform duration-300 ${category.data?.expanded ? "rotate-90" : "rotate-0"}`}
+              />
+              <PortfolioCategoryView
+                key={category.id}
+                title={category.data?.title}
+              />
+            </Box>
+
+            {/* Category Child */}
+            {category.data?.expanded &&
+              category.data?.data?.map((item) => (
+                <Box
+                  key={item.title}
+                  className="my-1 mt-2 ml-5 rounded-lg px-1.5 py-2 hover:cursor-pointer md:pl-3"
+                  backgroundColor={
+                    currentItemActive(category.id, item.title)
+                      ? "#AF8E25"
+                      : "transparent"
+                  }
+                  onClick={() => updateActivePortfolio(category.id, item.title)}
+                >
+                  <PortfolioCategoryChildView title={item.title} />
+                </Box>
+              ))}
           </Box>
         ))}
       </Box>
 
-      {/* Portfolio Content */}
+      {/* Content */}
       <Box className="flex h-full w-full flex-col overflow-y-scroll bg-[#1E1E1E] px-6 pt-8">
         <Text className="font-sfpro text-xl font-extrabold text-white">
-          {ActivePortfolioCategory.data?.title}
+          {PortfolioData.id}
         </Text>
 
         {/* Loader */}
@@ -111,10 +134,7 @@ export const PortfolioViewController: React.FC = () => {
 
         {!IsLoadPortfolioList && (
           <Box className="mt-2">
-            {sortedPortfolioList.length > 0 &&
-              sortedPortfolioList.map((item) => (
-                <PortfolioItemView key={item.title} item={item} />
-              ))}
+            <PortfolioItemView item={PortfolioData.data ?? {}} />
           </Box>
         )}
       </Box>

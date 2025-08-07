@@ -25,10 +25,10 @@ const ArrayExtension = {
   },
 
   sortByCreatedDate: <T extends { created?: string }>(array: T[]): T[] => {
-    return array.sort((a, b) => {
-      const dateA = a.created ? new Date(a.created + "-01").getTime() : 0;
-      const dateB = b.created ? new Date(b.created + "-01").getTime() : 0;
-      return dateB - dateA;
+    return [...array].sort((a, b) => {
+      const dateA = a.created ? new Date(a.created).getTime() : 0;
+      const dateB = b.created ? new Date(b.created).getTime() : 0;
+      return dateB - dateA; // Newest first
     });
   },
 } as const;
