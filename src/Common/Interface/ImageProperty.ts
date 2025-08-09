@@ -1,6 +1,7 @@
 export interface ImageProperty {
-  image: string;
   alt: string;
+  image: string;
+  title?: string;
   hover?: string;
-  isLarger?: boolean;
+  makeLarge?: boolean;
 }

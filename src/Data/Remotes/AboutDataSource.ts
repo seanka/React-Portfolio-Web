@@ -1,56 +1,70 @@
 import { BaseRemote } from "./Base/BaseRemote";
 
-import { Collection } from "../../Common/Enum/Collection";
-
-import { AboutSection } from "../../Domain/Entities/About/AboutSection";
 import { AboutRepository } from "../../Domain/Repositories/AboutRepository";
+
+import { Collection } from "../../Common/Enum/Collection";
+import { AboutEnum } from "../../Common/Enum/About/AboutEnum";
+
+import { Work } from "../../Domain/Entities/About/Work";
+import { Skill } from "../../Domain/Entities/About/Skill";
+import { About } from "../../Domain/Entities/About/About";
+import { Education } from "../../Domain/Entities/About/Education";
 import { BaseResponse } from "../../Domain/Entities/Core/BaseResponse";
 
-import { Education } from "../../Domain/Entities/About/Education";
-import { TechSkills } from "../../Domain/Entities/About/TechSkill";
-import { WorkExperience } from "../../Domain/Entities/About/WorkExperience";
-import { AboutSectionsEnum } from "../../Common/Enum/About/AboutSectionsEnum";
-
 export default class AboutDataSource implements AboutRepository {
-  async requestAboutSection(): Promise<AboutSection[]> {
+  async requestAboutV2(): Promise<BaseResponse<About>[]> {
     const baseRemote = BaseRemote();
 
     const data = await baseRemote.requestCollection({
-      col: `${Collection.about}-${Collection.sections}`,
+      col: `${Collection.about_v2}`,
       order: "position",
       sort: "asc",
-      whereCondition: [{ field: "isPublished", operator: "==", value: true }],
+      whereCondition: [
+        { field: "categoryPublished", operator: "==", value: true },
+      ],
     });
 
-    const response: AboutSection[] = [];
-    data.forEach((doc) => response.push(doc.data()));
+    const response: BaseResponse<About>[] = [];
+    data.forEach((doc) => response.push({ id: doc.id, data: doc.data() }));
+
     return response;
   }
 
-  async requestAboutData(
-    document: AboutSectionsEnum,
-  ): Promise<BaseResponse<any>> {
+  async requestAboutV2Edu(): Promise<BaseResponse<Education>[]> {
     const baseRemote = BaseRemote();
 
     const data = await baseRemote.requestCollection({
-      col: `${Collection.about}-${Collection.data}`,
+      col: `${Collection.about_v2}/${AboutEnum.EDUCATION}/${Collection.data}`,
     });
 
-    let response: BaseResponse<any> = { id: document, data: {} };
-    const aboutData = data.docs.find((doc) => doc.id === document);
+    const response: BaseResponse<Education>[] = [];
+    data.forEach((doc) => response.push({ id: doc.id, data: doc.data() }));
 
-    if (document === AboutSectionsEnum.TECHNICAL_SKILLS) {
-      response.data = aboutData?.data() as TechSkills;
-    } else if (document === AboutSectionsEnum.EDUCATION) {
-      response.data = aboutData?.data() as Education;
-    } else if (document === AboutSectionsEnum.WORK_EXPERIENCE) {
-      const workExp: WorkExperience[] = [];
-      Object.entries(
-        aboutData?.data() as Record<string, WorkExperience>,
-      ).forEach(([_, data]) => workExp.push(data as WorkExperience));
+    return response;
+  }
 
-      response.data = workExp;
-    }
+  async requestAboutV2Skill(): Promise<BaseResponse<Skill>[]> {
+    const baseRemote = BaseRemote();
+
+    const data = await baseRemote.requestCollection({
+      col: `${Collection.about_v2}/${AboutEnum.TECHNICAL_SKILLS}/${Collection.data}`,
+    });
+
+    const response: BaseResponse<Skill>[] = [];
+    data.forEach((doc) => response.push({ id: doc.id, data: doc.data() }));
+
+    return response;
+  }
+
+  async requestAboutV2Work(): Promise<BaseResponse<Work>[]> {
+    const baseRemote = BaseRemote();
+
+    const data = await baseRemote.requestCollection({
+      col: `${Collection.about_v2}/${AboutEnum.WORK_EXPERIENCE}/${Collection.data}`,
+    });
+
+    const response: BaseResponse<Work>[] = [];
+    data.forEach((doc) => response.push({ id: doc.id, data: doc.data() }));
 
     return response;
   }

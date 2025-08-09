@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Image, Text } from "@chakra-ui/react";
 
-import { EducationSchool } from "../../../../../../Domain/Entities/About/Education";
+import { EducationData } from "../../../../../../Domain/Entities/About/Education";
 
 interface props {
-  data: EducationSchool;
+  data: EducationData;
 }
 
 export const FormalEducationCard: React.FC<props> = (props) => {
@@ -15,8 +15,8 @@ export const FormalEducationCard: React.FC<props> = (props) => {
       {/* Title Section */}
       <Box className="flex flex-row items-end">
         <Image
-          src={data.image?.image}
           alt={data.image?.alt}
+          src={data.image?.image}
           className="mr-1 w-8 rounded-lg"
         />
         <Text className="font-sfpro text-base font-bold text-white">
@@ -38,7 +38,7 @@ export const FormalEducationCard: React.FC<props> = (props) => {
         {data.duration}
       </Text>
 
-      {data.descriptions?.map((item, index) => (
+      {data.description?.map((item, index) => (
         <Text
           key={index}
           className="font-sfpro px-2 py-0.5 text-justify text-sm text-white"

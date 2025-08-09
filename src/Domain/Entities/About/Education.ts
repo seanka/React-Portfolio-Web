@@ -1,8 +1,21 @@
 import { ImageProperty } from "../../../Common/Interface/ImageProperty";
 
 export interface Education {
-  school?: EducationSchool[];
-  certifications?: EducationCertification[];
+  title?: string;
+  listData?: EducationData[];
+  data?: Record<string, EducationData>;
+}
+
+export interface EducationData {
+  grade?: string;
+  field?: string;
+  degree?: string;
+  duration?: string;
+  position?: number;
+  published?: boolean;
+  organization?: string;
+  description?: string[];
+  image?: ImageProperty;
 }
 
 export interface EducationCertification {
@@ -16,15 +29,4 @@ interface CertificationData {
   title?: string;
   issued?: string;
   credential?: string;
-}
-
-export interface EducationSchool {
-  grade?: string;
-  field?: string;
-  degree?: string;
-  duration?: string;
-  position?: number;
-  image?: ImageProperty;
-  organization?: string;
-  descriptions?: string[];
 }

@@ -19,7 +19,7 @@ const Router = createBrowserRouter(
           element: <HomeViewController />,
         },
         {
-          path: NavigationPath.about.path,
+          path: `${NavigationPath.about.path}/:category?`,
           element: <AboutViewController />,
         },
         {
