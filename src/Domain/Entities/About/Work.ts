@@ -1,12 +1,13 @@
-export interface WorkExperience {
+export interface Work {
+  title?: string;
   position?: number;
   duration?: string;
   location?: string;
-  organization?: string;
-  detail?: WorkExperienceDetail[];
+  currentWork?: boolean;
+  detail?: WorkDetail[];
 }
 
-interface WorkExperienceDetail {
+export interface WorkDetail {
   duration?: string;
   division?: string;
   employment?: string;

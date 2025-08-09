@@ -1,0 +1,5 @@
+export enum AboutEnum {
+  EDUCATION = "EDU",
+  WORK_EXPERIENCE = "WORK-EXP",
+  TECHNICAL_SKILLS = "TECH-SKILLS",
+}

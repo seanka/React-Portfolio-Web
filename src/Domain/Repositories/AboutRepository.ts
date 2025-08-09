@@ -1,9 +1,12 @@
-import { AboutSectionsEnum } from "../../Common/Enum/About/AboutSectionsEnum";
-
+import { Work } from "../Entities/About/Work";
+import { About } from "../Entities/About/About";
+import { Skill } from "../Entities/About/Skill";
+import { Education } from "../Entities/About/Education";
 import { BaseResponse } from "../Entities/Core/BaseResponse";
-import { AboutSection } from "../Entities/About/AboutSection";
 
 export interface AboutRepository {
-  requestAboutSection(): Promise<AboutSection[]>;
-  requestAboutData(document: AboutSectionsEnum): Promise<BaseResponse<any>>;
+  requestAboutV2(): Promise<BaseResponse<About>[]>;
+  requestAboutV2Edu(): Promise<BaseResponse<Education>[]>;
+  requestAboutV2Skill(): Promise<BaseResponse<Skill>[]>;
+  requestAboutV2Work(): Promise<BaseResponse<Work>[]>;
 }

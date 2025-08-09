@@ -1,31 +1,31 @@
 import React from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
-import { TechSkills } from "../../../../../Domain/Entities/About/TechSkill";
+import { Skill } from "../../../../../Domain/Entities/About/Skill";
+import { BaseResponse } from "../../../../../Domain/Entities/Core/BaseResponse";
 
-import { TechSkillViewCard } from "./TechSkillsComponent/TechSkillViewCard";
+import { TechSkillCard } from "./TechSkillComponent/TechSkillCard";
 
 interface props {
-  techSkillsData: TechSkills | undefined;
+  data: BaseResponse<Skill>[];
 }
 
 export const TechSkillsView: React.FC<props> = (props) => {
-  const { techSkillsData } = props;
+  const { data } = props;
 
   return (
-    <Box className="mt-3 md:px-5">
-      {!techSkillsData && <Text>Loading</Text>}
+    <Box className="flex h-full flex-col justify-center md:px-5">
+      {data.map((category) => {
+        if (!category.data?.published) return;
 
-      {techSkillsData &&
-        techSkillsData.categories?.map((item) => {
-          return (
-            <TechSkillViewCard
-              data={item}
-              key={item.id}
-              data_icons={techSkillsData.category_data?.[item.id ?? ""] ?? {}}
-            />
-          );
-        })}
+        return (
+          <Box key={category.id}>
+            {category && category.id && category.data && category.data.data && (
+              <TechSkillCard title={category.id} data={category.data} />
+            )}
+          </Box>
+        );
+      })}
     </Box>
   );
 };

@@ -9,7 +9,7 @@ interface props {
   data: EducationCertification;
 }
 
-export const CertificationEducationCard: React.FC<props> = (props) => {
+export const InformalEducationCard: React.FC<props> = (props) => {
   const { data } = props;
 
   const sortedCertificationData = ArrayExtension.sortByIssuedDate(
@@ -17,7 +17,7 @@ export const CertificationEducationCard: React.FC<props> = (props) => {
   );
 
   return (
-    <Box className="mx-0.5 mt-1 mb-3 flex flex-col">
+    <Box className="mx-0.5 mt-1 mb-4 flex flex-col">
       {/* Title Section */}
       <Box className="mb-1 flex flex-row items-end">
         <Image
@@ -35,7 +35,7 @@ export const CertificationEducationCard: React.FC<props> = (props) => {
         <Text
           key={item.issued}
           onClick={() => window.open(item.credential ?? "", "_blank")}
-          className="font-sfpro mt-1 mb-0.5 pb-0.5 text-sm font-semibold text-white hover:cursor-pointer hover:text-[#AF8E25]"
+          className="font-sfpro mt-1 mb-0.5 px-2 pb-0.5 text-sm font-semibold text-white hover:cursor-pointer hover:text-[#AF8E25]"
         >
           ⏺&nbsp;&nbsp;&nbsp;{item.title}
         </Text>

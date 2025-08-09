@@ -1,3 +1,5 @@
+import { BaseResponse } from "../../../Domain/Entities/Core/BaseResponse";
+
 const ArrayExtension = {
   ShuffleArray: <T>(array: T[]): T[] => {
     const shuffled = [...array];
@@ -13,6 +15,30 @@ const ArrayExtension = {
       const posA = a.position ? a.position : 99;
       const posB = b.position ? b.position : 98;
       return posA - posB;
+    });
+  },
+
+  // SortArrayByDataPosition: <T extends { data: { position?: number } }>(
+  //   array: T[],
+  //   order: "asc" | "desc",
+  // ): T[] => {
+  //   return array.sort((a, b) => {
+  //     const posA = a.data.position ? a.data.position : 99;
+  //     const posB = b.data.position ? b.data.position : 98;
+
+  //     return order === "asc" ? posA - posB : posB - posA;
+  //   });
+  // },
+
+  SortArrayByDataPosition: <T extends { position?: number }>(
+    array: BaseResponse<T>[],
+    order: "asc" | "desc",
+  ): BaseResponse<T>[] => {
+    return array.sort((a, b) => {
+      const posA = a.data?.position ?? 99;
+      const posB = b.data?.position ?? 98;
+
+      return order === "asc" ? posA - posB : posB - posA;
     });
   },
 
