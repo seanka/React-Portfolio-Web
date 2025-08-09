@@ -70,31 +70,11 @@ export const PortfolioItemView: React.FC<props> = (props) => {
         </FullScreenModalView>
       )}
 
-      <Box className="mt-4 mb-8">
-        {/* Title */}
-        <Text className="font-sfpro text-base font-extrabold text-white">
-          {item.title}
-        </Text>
-
-        {/* External Link Buttons */}
-        <Box className="flex w-full flex-row gap-x-1">
-          {item.externalLinks?.map((item, index) => (
-            <Box
-              key={index}
-              border="1px"
-              borderColor="#AF8E25"
-              onClick={() => window.open(item.url ?? "", "_blank")}
-              className="flex cursor-pointer items-center justify-center rounded-md p-1"
-            >
-              <Image className="w-7" src={item.icon} />
-            </Box>
-          ))}
-        </Box>
-
+      <Box className="mt-2 mb-8">
         {/* Carousel Component */}
         <Box className="mt-4">
           <CarouselView
-            images={item.images ?? []}
+            images={item.image ?? []}
             emblaCarouselType={emblaCarouselType}
             onClickExpandImage={(image) => updateOpenFullScreenImage(image)}
             onUpdateScrollSnaps={(emblaApi: EmblaCarouselType) =>
@@ -110,7 +90,7 @@ export const PortfolioItemView: React.FC<props> = (props) => {
         <Box className="mt-4 flex flex-row justify-center">
           {ScrollSnaps.length > 0 &&
             ScrollSnaps.map((_, index) => {
-              const image = item.images?.[index];
+              const image = item.image?.[index];
 
               return (
                 <CarouselThumb
@@ -126,6 +106,21 @@ export const PortfolioItemView: React.FC<props> = (props) => {
                 />
               );
             })}
+        </Box>
+
+        {/* External Link Buttons */}
+        <Box className="mt-4 flex w-full flex-row gap-x-1">
+          {item.externalLink?.map((item, index) => (
+            <Box
+              key={index}
+              border="1px"
+              borderColor="#AF8E25"
+              onClick={() => window.open(item.url ?? "", "_blank")}
+              className="flex cursor-pointer items-center justify-center rounded-md p-1"
+            >
+              <Image className="w-7" src={item.icon} />
+            </Box>
+          ))}
         </Box>
 
         {/* Details */}

@@ -19,11 +19,11 @@ const Router = createBrowserRouter(
           element: <HomeViewController />,
         },
         {
-          path: NavigationPath.about.path,
+          path: `${NavigationPath.about.path}/:category?`,
           element: <AboutViewController />,
         },
         {
-          path: `${NavigationPath.projects.path}/:category?`,
+          path: `${NavigationPath.projects.path}/:category?/:item?`,
           element: <PortfolioViewController />,
         },
         {

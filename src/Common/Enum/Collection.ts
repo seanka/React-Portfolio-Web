@@ -1,6 +1,7 @@
 export enum Collection {
-  about = "about",
+  about_v2 = "about-v2",
   portfolio = "portfolio",
+  portfolio_v2 = "portfolio-v2",
   home_contact = "home-contact",
 
   data = "data",

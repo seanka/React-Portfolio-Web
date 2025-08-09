@@ -1,3 +1,5 @@
+import { BaseResponse } from "../../../Domain/Entities/Core/BaseResponse";
+
 const ArrayExtension = {
   ShuffleArray: <T>(array: T[]): T[] => {
     const shuffled = [...array];
@@ -16,6 +18,30 @@ const ArrayExtension = {
     });
   },
 
+  // SortArrayByDataPosition: <T extends { data: { position?: number } }>(
+  //   array: T[],
+  //   order: "asc" | "desc",
+  // ): T[] => {
+  //   return array.sort((a, b) => {
+  //     const posA = a.data.position ? a.data.position : 99;
+  //     const posB = b.data.position ? b.data.position : 98;
+
+  //     return order === "asc" ? posA - posB : posB - posA;
+  //   });
+  // },
+
+  SortArrayByDataPosition: <T extends { position?: number }>(
+    array: BaseResponse<T>[],
+    order: "asc" | "desc",
+  ): BaseResponse<T>[] => {
+    return array.sort((a, b) => {
+      const posA = a.data?.position ?? 99;
+      const posB = b.data?.position ?? 98;
+
+      return order === "asc" ? posA - posB : posB - posA;
+    });
+  },
+
   sortByIssuedDate: <T extends { issued?: string }>(array: T[]): T[] => {
     return array.sort((a, b) => {
       const dateA = a.issued ? new Date(a.issued + "-01").getTime() : 0;
@@ -25,10 +51,10 @@ const ArrayExtension = {
   },
 
   sortByCreatedDate: <T extends { created?: string }>(array: T[]): T[] => {
-    return array.sort((a, b) => {
-      const dateA = a.created ? new Date(a.created + "-01").getTime() : 0;
-      const dateB = b.created ? new Date(b.created + "-01").getTime() : 0;
-      return dateB - dateA;
+    return [...array].sort((a, b) => {
+      const dateA = a.created ? new Date(a.created).getTime() : 0;
+      const dateB = b.created ? new Date(b.created).getTime() : 0;
+      return dateB - dateA; // Newest first
     });
   },
 } as const;
