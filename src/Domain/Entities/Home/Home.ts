@@ -1,10 +1,26 @@
 export interface Home {
-  image?: string;
-  location?: string;
+  greeting?: string;
   headline?: string;
-  greetingMessage?: string;
-  countSection?: DataSection[];
-  personalSection?: DataSection[];
+  coverImage?: string;
+  interest?: HomeData[];
+  demographic?: HomeData[];
+  contact?: Record<string, HomeContact>[];
+  listContact?: HomeContact[];
+  categoryPublished?: boolean;
+}
+
+export interface HomeData {
+  icon?: string;
+  title?: string;
+  value?: string;
+  position?: number;
+}
+
+interface HomeContact {
+  url?: string;
+  image?: string;
+  position?: number;
+  published?: boolean;
 }
 
 export interface DataSection {
