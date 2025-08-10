@@ -1,10 +1,11 @@
 import { Box, Image, Text } from "@chakra-ui/react";
 
-import { Home } from "../../../../../Domain/Entities/Home/Home";
 import { IntroductionCart } from "./IntroductionComponent/IntroductionCard";
 
+import { HomeIntroduction } from "../../../../../Domain/Entities/Home/HomeIntroduction";
+
 interface props {
-  data: Home;
+  data: HomeIntroduction;
 }
 
 export const IntroductionView: React.FC<props> = (props) => {

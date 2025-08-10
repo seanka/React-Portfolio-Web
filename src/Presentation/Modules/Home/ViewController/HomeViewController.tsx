@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import HomeViewModel from "../ViewModel/HomeViewModel";
 
@@ -34,20 +34,21 @@ export const HomeViewController: React.FC = () => {
 
       {!IsLoading &&
         Home &&
-        Home.map((section) => (
-          <Box
-            key={section.id}
-            h={`${MAX_COMPONENT_HEIGHT}px`}
-            className="flex shrink-0 flex-col"
-          >
-            {/* Dynamic Home Section */}
-            {section.id === HomeEnum.INTRODUCTION && section.data && (
-              <IntroductionView data={section.data} />
-            )}
-
-            {section.id === "SECTION_TWO" && <Text>section two</Text>}
-          </Box>
-        ))}
+        Object.keys(Home).map((key) => {
+          return (
+            <Box
+              key={key}
+              h={`${MAX_COMPONENT_HEIGHT}px`}
+              className="flex shrink-0 flex-col"
+            >
+              {/* Dynamic Home Section */}
+              {key === HomeEnum.INTRODUCTION.toLowerCase() &&
+                Home.introduction && (
+                  <IntroductionView data={Home.introduction} />
+                )}
+            </Box>
+          );
+        })}
     </Box>
   );
 };
