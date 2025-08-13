@@ -11,7 +11,6 @@ interface props {
 export const WorkExperienceCard: React.FC<props> = (props) => {
   const { data } = props;
 
-  console.log(data);
   return (
     <Box
       border="1px"
