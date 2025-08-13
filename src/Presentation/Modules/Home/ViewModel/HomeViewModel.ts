@@ -1,29 +1,72 @@
 import { useState } from "react";
 
-import HomeContactDataSource from "../../../../Data/Remotes/HomeContactDataSource";
-
 import { Home } from "../../../../Domain/Entities/Home/Home";
-import { BaseResponse } from "../../../../Domain/Entities/Core/BaseResponse";
-import { HomeContactSectionEnum } from "../../../../Common/Enum/HomeContact/HomeContactSectionEnum";
+import { HomeRunning } from "../../../../Domain/Entities/Home/HomeRunning";
+import { HomeIntroduction } from "../../../../Domain/Entities/Home/HomeIntroduction";
+
+import HomeDataSource from "../../../../Data/Remotes/HomeDataSource";
+import ArrayExtension from "../../../../Common/Core/Utils/ArrayExtension";
+
+import { HomeEnum } from "../../../../Common/Enum/Home/HomeEnum";
 
 const HomeViewModel = () => {
-  const ds = new HomeContactDataSource();
+  const ds = new HomeDataSource();
 
-  const [HomeData, setHomeData] = useState<BaseResponse<Home>>({});
+  const [Home, setHome] = useState<Home>({});
 
   const [IsLoading, setIsLoading] = useState<boolean>(false);
 
   async function requestHomeData() {
     setIsLoading(true);
-    const response = await ds.requestHomeContactData(
-      HomeContactSectionEnum.HOME,
-    );
+    const home = await ds.requestHomeV2();
 
-    setHomeData(response);
+    const sortedHome: Home = {};
+    home.forEach((section) => {
+      switch (section.id) {
+        case HomeEnum.INTRODUCTION:
+          const intro = section.data as HomeIntroduction;
+
+          sortedHome.introduction = {
+            greeting: intro.greeting,
+            headline: intro.headline,
+            coverImage: intro.coverImage,
+            categoryPublished: intro.categoryPublished,
+            interest: ArrayExtension.SortArrayByPosition(intro.interest ?? []),
+            demographic: ArrayExtension.SortArrayByPosition(
+              intro.demographic ?? [],
+            ),
+            listContact: ArrayExtension.SortArrayByPosition(
+              Object.values(intro.contact ?? []),
+            ),
+          };
+          break;
+
+        case HomeEnum.RUNNING:
+          const running = section.data as HomeRunning;
+
+          sortedHome.running = {
+            position: running.position,
+            categoryPublished: running.categoryPublished,
+            listData: Object.values(running.data!).map((run) => ({
+              peak: run.peak,
+              title: run.title,
+              mileage: run.mileage,
+              race: ArrayExtension.SortArrayByPosition(run.race ?? []),
+            })),
+            accumulation: running.accumulation,
+          };
+          break;
+
+        default:
+          break;
+      }
+    });
+
+    setHome(sortedHome);
     setIsLoading(false);
   }
 
-  return { HomeData, IsLoading, requestHomeData };
+  return { Home, IsLoading, requestHomeData };
 };
 
 export default HomeViewModel;
