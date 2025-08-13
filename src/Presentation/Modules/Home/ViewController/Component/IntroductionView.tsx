@@ -51,7 +51,7 @@ export const IntroductionView: React.FC<props> = (props) => {
           <Image src={data.coverImage} className="w-[260px] md:w-[380px]" />
         </Box>
 
-        <Box className="order-2 mb-3 flex h-[80%] w-full flex-row justify-between px-10 md:order-none md:w-auto md:flex-col md:items-end md:justify-evenly md:px-0">
+        <Box className="order-2 mb-3 flex h-[80%] w-full flex-row justify-around px-10 md:order-none md:w-auto md:flex-col md:items-end md:justify-evenly md:px-0">
           {data.interest?.map((item) => (
             <IntroductionCart
               key={item.title}
@@ -77,9 +77,7 @@ export const IntroductionView: React.FC<props> = (props) => {
             return (
               <Box
                 key={contact.image}
-                mr={lastItem ? "40px" : "20px"}
-                ml={firstItem ? "40px" : "20px"}
-                className="hover:cursor-pointer"
+                className={`hover:cursor-pointer ${lastItem ? "mr-[20px]" : "mr-[10px]"} ${firstItem ? "ml-[20px]" : "ml-[10px]"} ${lastItem ? "md:mr-[40px]" : "md:mr-[20px]"} ${firstItem ? "md:ml-[40px]" : "md:ml-[20px]"}`}
                 onClick={() => window.open(contact.url, "_blank")}
               >
                 <Image src={contact.image} className="w-[24px] md:w-[28px]" />

@@ -1,8 +1,9 @@
 import { Box, Text } from "@chakra-ui/react";
-import { HomeData } from "../../../../../../Domain/Entities/Home/Home";
+
+import { IntroductionData } from "../../../../../../Domain/Entities/Home/HomeIntroduction";
 
 interface props {
-  data: HomeData;
+  data: IntroductionData;
   iconPosition: "left" | "right";
 }
 
@@ -39,12 +40,12 @@ export const IntroductionCart: React.FC<props> = (props) => {
 
       <Box className="items-center justify-center md:flex-col">
         <Text
-          className={`font-sfpro text-center text-xs font-semibold text-white md:${iconPosition == "left" ? "text-left" : "text-right"} md:text-sm`}
+          className={`font-sfpro text-center text-xs font-semibold text-white ${iconPosition == "left" ? "md:text-left" : "md:text-right"} md:text-sm`}
         >
           {data.title}
         </Text>
         <Text
-          className={`font-sfpro text-center text-2xl font-bold text-white md:${iconPosition == "left" ? "text-left" : "text-right"} md:text-4xl`}
+          className={`font-sfpro text-center text-2xl font-bold text-white ${iconPosition == "left" ? "md:text-left" : "md:text-right"} md:text-4xl`}
         >
           {data.value}
         </Text>

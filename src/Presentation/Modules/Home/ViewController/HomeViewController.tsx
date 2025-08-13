@@ -6,6 +6,7 @@ import HomeViewModel from "../ViewModel/HomeViewModel";
 import { HomeEnum } from "../../../../Common/Enum/Home/HomeEnum";
 import { useScrollSnap } from "../../../../Common/Core/Hooks/useScrollSnap";
 
+import { RunningView } from "./Component/RunningView";
 import { IntroductionView } from "./Component/IntroductionView";
 import { SpinnerLoader } from "../../../Common/SpinnerLoader/SpinnerLoader";
 
@@ -34,21 +35,23 @@ export const HomeViewController: React.FC = () => {
 
       {!IsLoading &&
         Home &&
-        Object.keys(Home).map((key) => {
-          return (
-            <Box
-              key={key}
-              h={`${MAX_COMPONENT_HEIGHT}px`}
-              className="flex shrink-0 flex-col"
-            >
-              {/* Dynamic Home Section */}
-              {key === HomeEnum.INTRODUCTION.toLowerCase() &&
-                Home.introduction && (
-                  <IntroductionView data={Home.introduction} />
-                )}
-            </Box>
-          );
-        })}
+        Object.keys(Home).map((key) => (
+          <Box
+            key={key}
+            h={`${MAX_COMPONENT_HEIGHT}px`}
+            className="flex shrink-0 flex-col"
+          >
+            {/* Dynamic Home Section */}
+            {key === HomeEnum.INTRODUCTION.toLowerCase() &&
+              Home.introduction && (
+                <IntroductionView data={Home.introduction} />
+              )}
+
+            {key === HomeEnum.RUNNING.toLowerCase() && Home.running && (
+              <RunningView data={Home.running} />
+            )}
+          </Box>
+        ))}
     </Box>
   );
 };
