@@ -102,9 +102,9 @@ All content stored in **Firebase Firestore**. Data sources extend `BaseRemote` w
 - `ArrayExtension.ts`, `NumberExtension.ts`, `StringExtension.ts` — utility helpers
 
 ## Planned Changes (UI Revamp)
-- **Remove** the Running section from Home entirely
-- Full UI redesign — no reference yet, to be determined
-- Current look: dark Finder-style macOS theme; goal is a more polished/modern aesthetic
+See **[REVAMP.md](./REVAMP.md)** for the full design spec, hard layout sketch, card-to-source mapping, implementation order, and decisions log.
+
+**TL;DR:** Full redesign from macOS Finder sidebar → iCloud-style bento grid single-page. Remove Running section. No sidebar. Projects detail stays as a modal.
 
 ## Development
 ```bash
