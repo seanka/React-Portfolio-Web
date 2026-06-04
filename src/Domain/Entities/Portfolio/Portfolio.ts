@@ -8,7 +8,7 @@ export interface PortfolioV2 {
   data?: PortfolioBriefData[];
 }
 
-interface PortfolioBriefData {
+export interface PortfolioBriefData {
   title?: string;
   created?: string;
   published?: boolean;
@@ -18,6 +18,7 @@ export interface Portfolio {
   description?: string;
   image?: ImageProperty[];
   externalLink?: ExternalLink[];
+  published?: boolean;
 }
 
 interface ExternalLink {
