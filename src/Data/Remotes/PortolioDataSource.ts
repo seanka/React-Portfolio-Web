@@ -5,6 +5,7 @@ import { Collection } from "../../Common/Enum/Collection";
 import {
   Portfolio,
   PortfolioV2,
+  PortfolioBriefData,
 } from "../../Domain/Entities/Portfolio/Portfolio";
 
 import { BaseResponse } from "../../Domain/Entities/Core/BaseResponse";
@@ -24,16 +25,17 @@ export default class PortfolioDataSource implements PortfolioRepository {
     });
 
     const response: BaseResponse<PortfolioV2>[] = [];
-    data.forEach((doc) => response.push({ id: doc.id, data: doc.data() }));
+    data.forEach((doc) => {
+      let data = doc.data()
+      let portfolioData: PortfolioBriefData[] = []
 
-    // Take out unpublished item for each data in PortfolioData
-    response.forEach((category) => {
-      if (category.data?.data) {
-        category.data.data = category.data?.data?.filter(
-          (item) => item.published,
-        );
-      }
-    });
+      data.data.forEach((element: PortfolioBriefData) => {
+        if (element.published == true) { portfolioData.push(element) }
+      });
+      data.data = portfolioData
+
+      response.push({ id: doc.id, data: data })
+    })
 
     return response;
   }
@@ -45,6 +47,7 @@ export default class PortfolioDataSource implements PortfolioRepository {
 
     const data = await baseRemote.requestCollection({
       col: `${Collection.portfolio_v2}/${category}/${Collection.data}`,
+      whereCondition: [{ field: "published", operator: "==", value: true }],
     });
 
     const response: BaseResponse<Portfolio>[] = [];

@@ -37,11 +37,11 @@ export const TechSkillCard: React.FC<props> = (props) => {
       {/* Content Section (on Expand)
       If item < 3 (grid cols amount) */}
       {IsExpanded && (
-        <Box className="mt-1 mb-4 grid h-full grid-cols-2 gap-4 px-2 md:grid-cols-3 md:px-3">
+        <Box className="mt-1 mb-4 grid h-full grid-cols-3 gap-4 px-2 md:grid-cols-4 md:px-3">
           {shuffledData.map((item) => (
             <Box
               key={item.alt}
-              className={`${item.makeLarge ? "row-span-2" : ""} flex items-center justify-center`}
+              className="row-span-2 flex items-center justify-center"
             >
               <Tooltip
                 placement="top"
