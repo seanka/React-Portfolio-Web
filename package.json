@@ -1,7 +1,7 @@
 {
   "name": "react-portfolio-web",
   "private": true,
-  "version": "2.2.0",
+  "version": "3.0.0",
   "type": "module",
   "homepage": "https://seanka.github.io/React-Portfolio-Web",
   "scripts": {
@@ -40,6 +40,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "gh-pages": "^6.1.1",
+    "playwright": "^1.60.0",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "typescript": "^5.2.2",

@@ -14,7 +14,7 @@ export const TechSkillsView: React.FC<props> = (props) => {
   const { data } = props;
 
   return (
-    <Box className="flex h-full flex-col justify-center md:px-5">
+    <Box className="flex h-full flex-col justify-center pb-6 md:px-5">
       {data.map((category) => {
         if (!category.data?.published) return;
 

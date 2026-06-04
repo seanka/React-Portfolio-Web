@@ -1,6 +1,7 @@
 export interface HomeIntroduction {
   greeting?: string;
   headline?: string;
+  summary?: string;
   coverImage?: string;
   categoryPublished?: boolean;
   interest?: IntroductionData[];
