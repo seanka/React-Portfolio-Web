@@ -48,13 +48,13 @@ export const BentoViewController: React.FC = () => {
   return (
     <Box className="min-h-screen w-full bg-[#1E1E1E] px-4 py-6 md:px-18 md:py-20">
       {/* Bento Grid */}
-      <Box className="grid grid-cols-12 gap-10">
+      <Box className="grid grid-cols-10 gap-10">
 
         {/*
           Row 1–2 (auto-row height)s
           Mobile:  each card full-width, stacked
-          Desktop: Hero(3,rows1-2) | Tagline(6,row1) | Socials(3,rows1-2)
-                                   | Status(6,row2)
+          Desktop: Hero(4,rows1-2) | Tagline(6,row1) 
+                                   | Status(4,row2) | Socials(2, row2)
         */}
 
         {Introduction && (
@@ -65,12 +65,12 @@ export const BentoViewController: React.FC = () => {
           <IntroTaglineCard data={Introduction} />
         )}
 
-        {Introduction && (
-          <SocialsCard data={Introduction} />
-        )}
-
         {currentWork && (
           <CurrentStatusCard currentWork={currentWork} />
+        )}
+
+        {Introduction && (
+          <SocialsCard data={Introduction} />
         )}
 
         {/* Row 3: Tech Skills – full 12 cols */}

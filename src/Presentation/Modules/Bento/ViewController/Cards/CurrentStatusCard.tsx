@@ -22,7 +22,7 @@ export const CurrentStatusCard: React.FC<props> = ({ currentWork }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-      className="col-span-12 md:col-span-5 flex flex-col justify-center rounded-2xl bg-[#2A2A2A] p-5 md:p-6"
+      className="col-span-12 md:col-span-4 flex flex-col justify-center rounded-2xl bg-[#2A2A2A] p-5 md:p-6"
     >
       {/* Live badge */}
       <Box className="mb-3 flex flex-row items-center gap-x-2">

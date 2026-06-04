@@ -16,7 +16,7 @@ export const IntroTaglineCard: React.FC<props> = ({ data }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-      className="col-span-12 md:col-span-5 flex flex-col justify-center rounded-2xl bg-[#2A2A2A] p-5 md:p-6"
+      className="col-span-12 md:col-span-6 flex flex-col justify-center rounded-2xl bg-[#2A2A2A] p-5 md:p-6"
     >
       <Text className="font-sfpro text-2xl font-black text-white md:text-3xl">
         {data.headline}
