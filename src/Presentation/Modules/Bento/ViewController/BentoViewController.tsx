@@ -9,10 +9,11 @@ import { IntroTaglineCard } from "./Cards/IntroTaglineCard";
 import { CurrentStatusCard } from "./Cards/CurrentStatusCard";
 import { SocialsCard } from "./Cards/SocialsCard";
 import { TechSkillsCard } from "./Cards/TechSkillsCard";
-import { WorkExpBentoCard } from "./Cards/WorkExpBentoCard";
 import { EducationBentoCard } from "./Cards/EducationBentoCard";
-import { ProjectsCard } from "./Cards/ProjectsCard";
-import { ProjectDetailModal } from "./Cards/ProjectDetailModal";
+import { ProjectDetailModal } from "../../Components/Projects/Components/Detail/ProjectDetailModal";
+
+import { WorkExpBentoCard } from "../../Components/Work/WorkExpBentoCard";
+import { ProjectsBentoCard } from "../../Components/Projects/ProjectsBentoCard";
 
 export const BentoViewController: React.FC = () => {
   const vm = BentoViewModel();
@@ -48,7 +49,7 @@ export const BentoViewController: React.FC = () => {
   return (
     <Box className="min-h-screen w-full bg-[#1E1E1E] px-4 py-6 md:px-18 md:py-20">
       {/* Bento Grid */}
-      <Box className="grid grid-cols-10 gap-10">
+      <Box className="grid grid-cols-10 gap-4 md:gap-10">
 
         {/*
           Row 1–2 (auto-row height)s
@@ -89,7 +90,7 @@ export const BentoViewController: React.FC = () => {
 
         {/* Row 5: Projects – full 12 cols */}
         {Portfolio.length > 0 && (
-          <ProjectsCard
+          <ProjectsBentoCard
             categories={Portfolio}
             items={filteredPortfolioItems}
             activeCategory={ActiveCategory}

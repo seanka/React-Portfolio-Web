@@ -9,17 +9,10 @@ import { Work } from "../../../../Domain/Entities/About/Work";
 import { Skill } from "../../../../Domain/Entities/About/Skill";
 import { Education } from "../../../../Domain/Entities/About/Education";
 import { Portfolio, PortfolioV2 } from "../../../../Domain/Entities/Portfolio/Portfolio";
+import { PortfolioItem } from "../../../../Domain/Entities/Portfolio/PortfolioItem";
 import { BaseResponse } from "../../../../Domain/Entities/Core/BaseResponse";
 
 import ArrayExtension from "../../../../Common/Core/Utils/ArrayExtension";
-
-export interface PortfolioItem {
-  title: string;
-  categoryId: string;
-  categoryTitle: string;
-  created?: string;
-  data?: Portfolio;
-}
 
 const BentoViewModel = () => {
   const homeDS = new HomeDataSource();

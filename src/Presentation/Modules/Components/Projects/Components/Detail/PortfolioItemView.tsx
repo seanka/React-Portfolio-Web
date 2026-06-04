@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useCallback } from "react";
 import parse from "html-react-parser";
 import { Box, Image, Text } from "@chakra-ui/react";
 
 import { EmblaCarouselType } from "embla-carousel";
 
-import { Portfolio } from "../../../../../Domain/Entities/Portfolio/Portfolio";
+import { Portfolio } from "../../../../../../Domain/Entities/Portfolio/Portfolio";
 
-import { CarouselView } from "../../../../Common/Carousel/CarouselView";
-import { CarouselThumb } from "../../../../Common/Carousel/CarouselThumb";
+import { CarouselView } from "../../../../../Common/Carousel/CarouselView";
+import { CarouselThumb } from "../../../../../Common/Carousel/CarouselThumb";
 
-import PortfolioItemViewModel from "../../ViewModel/PortfolioItemViewModel";
-import { FullScreenModalView } from "../../../../Common/FullScreenModal/FullScreenModalView";
+import { FullScreenModalView } from "../../../../../Common/FullScreenModal/FullScreenModalView";
+
+import PortfolioItemViewModel from "./PortfolioItemViewModel";
 
 interface props {
   item: Portfolio;
