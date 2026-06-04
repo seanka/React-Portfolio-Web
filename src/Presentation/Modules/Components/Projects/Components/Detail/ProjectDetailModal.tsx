@@ -2,8 +2,9 @@ import React from "react";
 import { Box, Text } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { PortfolioItem } from "../../../../Bento/ViewModel/BentoViewModel";
 import { PortfolioItemView } from "./PortfolioItemView";
+
+import { PortfolioItem } from "../../../../../../Domain/Entities/Portfolio/PortfolioItem";
 
 interface props {
   item: PortfolioItem | null;
